@@ -1,0 +1,31 @@
+.section-title {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: toRem(30);
+    padding-bottom: toRem(10);
+    @include font-setting($primary-font, toRem(12), toRem(14), 700, $black);
+    text-align: left;
+    text-transform: uppercase;
+    border-bottom: toRem(1) solid $black;
+
+    @include min-screen(768px) {
+        font-size: toRem(16);
+        line-height: toRem(19);
+        padding-bottom: toRem(20);
+        margin-bottom: toRem(50);
+        border-width: toRem(2);
+    }
+
+    @include min-screen(1024px) {
+        padding-bottom: toRem(16);
+        margin-bottom: toRem(50);
+        border-width: toRem(2);
+    }
+
+    @include min-screen(1280px) {
+        font-size: toRem(20);
+        line-height: toRem(24);
+        padding-bottom: toRem(20);
+        margin-bottom: toRem(80);
+    }
+}

@@ -1,0 +1,476 @@
+.rates {
+    position: relative;
+    @include flex-setting(column, flex-start, flex-start);
+    width: 100%;
+    padding-top: toRem(32);
+    margin-bottom: toRem(48);
+    background-color: $white;
+
+    &__title {
+        align-self: center;
+        display: inline-flex;
+        width: calc(100% - 12.5%);
+        text-align: left;
+    }
+
+    &__nav {
+        position: relative;
+        @include flex-setting(row, flex-start, center);
+        gap: toRem(14);
+        width: 100%;
+        padding-left: 6.25%;
+        padding-right: 6.25%;
+        margin-bottom: toRem(40);
+        scroll-padding-left: 6.25%;
+        scroll-padding-right: 6.25%;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::after {
+            position: absolute;
+            bottom: 0;
+            left: 6.25%;
+            content: '';
+            width: 100%;
+            height: toRem(1);
+            background-color: $black;
+        }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &-item {
+            position: relative;
+            @include flex-setting(column, center, center);
+            width: auto;
+            //margin-right: toRem(14);
+            padding-bottom: toRem(10);
+            scroll-snap-align: center;
+            @include font-setting($primary-font, toRem(12), toRem(14), 700, $black);
+            text-transform: uppercase;
+            white-space: nowrap;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+
+            &::after {
+                position: absolute;
+                content: '';
+
+                bottom: 0;
+                left: 0;
+                z-index: 10;
+                width: 100%;
+                height: toRem(4);
+                background-color: $green;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: 0.2s $cubic;
+            }
+
+            &.is-active {
+                &::after {
+                    transform: scaleX(1);
+                    transform-origin: right;
+                    transition: 0.2s $cubic;
+                }
+            }
+        }
+    }
+
+    &__content {
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        padding: 0 6.25%;
+        margin-bottom: toRem(40);
+    }
+
+    &__content-item {
+        @include flex-setting(column, flex-start, flex-start);
+        gap: toRem(24);
+        width: 100%;
+        display: none;
+
+        &.is-active {
+            display: flex;
+        }
+    }
+
+    &__content-line {
+        position: relative;
+        @include flex-setting(row, flex-start, center);
+        width: 100%;
+        padding-bottom: toRem(6);
+        border-bottom: toRem(1) solid $darkwhite;
+
+        &.opened {
+            .rates__content-popup {
+                display: flex;
+                z-index: auto;
+                // box-shadow: 10px 10px 0 0 $green;
+
+                &::before {
+                    position: absolute;
+                    content: '';
+
+                    width: 100%;
+                    height: 100%;
+                    background-color: $green;
+                    top: toRem(10);
+                    right: toRem(-10);
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    &__content-name {
+        @include font-setting($primary-font, toRem(14), toRem(17), 500, $black);
+        text-align: left;
+        letter-spacing: -0.01em;
+        margin-right: toRem(6);
+    }
+
+    &__content-btn {
+        @include flex-setting(column, center, center);
+        width: toRem(15);
+        min-width: toRem(15);
+        height: toRem(15);
+        padding: 0;
+        background-color: $medgray;
+        border-radius: 100%;
+        border: none;
+
+        &.is-active {
+            background-color: $green;
+            transition: 0.2s $cubic;
+            
+            & ~ .rates__content-popup {
+                display: flex;
+                z-index: auto;
+                // box-shadow: 10px 10px 0 0 $green;
+
+                &::before {
+                    position: absolute;
+                    content: '';
+
+                    width: 100%;
+                    height: 100%;
+                    background-color: $green;
+                    top: toRem(10);
+                    right: toRem(-10);
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    &__content-image {
+        width: toRem(5);
+        height: toRem(8);
+        fill: $white;
+    }
+
+    &__content-popup {
+        position: absolute;
+        @include flex-setting(column, center, center);
+        display: none;
+        width: auto;
+        border-radius: toRem(10);
+
+        &-closer {
+            position: absolute;
+            top: toRem(0);
+            right: toRem(8);
+            width: toRem(8);
+            height: toRem(8);
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            z-index: 3;
+        }
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            fill: $green;
+        }
+    }
+
+    &__content-about {
+        display: inline-flex;
+        padding: toRem(20) toRem(20);
+        background-color: $black;
+        border: toRem(2) solid $green;
+        border-radius: toRem(10);
+        @include font-setting($primary-font, toRem(10), toRem(12), 500, $white);
+        text-align: left;
+        z-index: 2;
+    }
+
+    &__content-nr {
+        margin-left: auto;
+        margin-right: toRem(6);
+        @include font-setting($primary-font, toRem(17), toRem(20), 500, $black);
+        text-align: center;
+        letter-spacing: -0.017em;
+    }
+
+    &__content-text {
+        @include font-setting($primary-font, toRem(12), toRem(14), 500, $black);
+        text-align: center;
+        letter-spacing: -0.01em;
+    }
+
+    &__bottom {
+        @include flex-setting(column, flex-start, center);
+        width: 100%;
+        padding: 0 6.25%;
+
+        &-name {
+            display: none;
+        }
+
+        &-link {
+            @include flex-setting(column, center, center);
+            width: 100%;
+            padding: toRem(14) 0;
+            @include font-setting($primary-font, toRem(15), toRem(18), 500, $black);
+            text-align: center;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: toRem(1) solid $black;
+            border-radius: toRem(24);
+            transition: 0.2s $cubic;
+
+            &:active {
+                border-color: $green;
+                background-color: $green;
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+}
+
+@include min-screen(768px) {
+    .rates {
+        padding-top: toRem(40);
+        padding-left: 2.6%;
+        padding-right: 2.6%;
+        margin-bottom: toRem(30);
+    
+        &__title {
+            width: 100%;
+        }
+    
+        &__nav {
+            position: absolute;
+            top: toRem(42);
+            right: 2.6%;
+            justify-content: flex-end;
+            gap: toRem(38);
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 0;
+            scroll-padding-left: 0;
+            scroll-padding-right: 0;
+            overflow-y: visible;
+            overflow-x: visible;
+            scroll-snap-type: none;
+    
+            &::after {
+                display: none;
+            }
+    
+            &-item {
+                padding-bottom: toRem(20);
+                font-size: toRem(16);
+                line-height: toRem(19);
+            }
+        }
+    
+        &__content {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        &__content-name {
+            margin-right: toRem(10);
+        }
+    
+        &__content-btn {
+            width: toRem(16);
+            min-width: toRem(16);
+            height: toRem(16);
+        }
+    
+        &__content-about {
+            padding: toRem(40) toRem(40);
+            font-size: toRem(17);
+            line-height: toRem(20);
+        }
+    
+        &__content-nr {
+            font-size: toRem(20);
+            line-height: toRem(24);
+        }
+    
+        &__content-text {
+            font-size: toRem(14);
+            line-height: toRem(17);
+        }
+    
+        &__bottom {
+            align-self: flex-end;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            width: auto;
+            padding: 0;
+    
+            &-name {
+                display: inline-flex;
+                width: 100%;
+                max-width: toRem(88);
+                margin-right: toRem(38);
+                @include font-setting($primary-font, toRem(14), toRem(20), 400, $black);
+                text-align: left;
+            }
+    
+            &-link {
+                width: auto;
+                padding: toRem(17) toRem(41);
+                font-size: toRem(18);
+                line-height: toRem(22);
+                border-radius: toRem(28);
+            }
+        }
+    }
+}
+
+@include min-screen(1024px) {
+    .rates {
+        padding-top: toRem(64);
+        padding-left: 3.90625%;
+        padding-right: 3.90625%;
+        margin-bottom: toRem(32);
+
+        &__nav {
+            top: toRem(62);
+            right: 3.90625%;
+            gap: toRem(46);
+
+            &-item {
+                cursor: pointer;
+            }
+        }
+
+        &__content {
+            margin-bottom: toRem(30);
+
+            &-about {
+                max-width: toRem(426);
+            }
+        }
+    
+        &__bottom {
+            &-link {
+
+                &:hover {
+                    background-color: $black;
+                    color: $white;
+                    transition: 0.2s $cubic;
+                }
+            }
+        }
+    }
+}
+
+@include min-screen(1280px) {
+    .rates {
+        --width: calc(100% - 1182px);
+        padding: toRem(80) calc(var(--width) / 2) 0 calc(var(--width) / 2);
+        margin-bottom: toRem(40);
+
+        &__title {
+            margin-bottom: toRem(60);
+        }
+
+        &__nav {
+            top: toRem(82);
+            right: calc(var(--width) / 2);
+            gap: toRem(58);
+
+            &-item {
+                font-size: toRem(20);
+                line-height: toRem(24);
+            }
+        }
+
+        &__content {
+            margin-bottom: toRem(40);
+
+            &-line {
+                border-width: toRem(2);
+            }
+
+            &-name {
+                margin-right: toRem(11);
+                font-size: toRem(18);
+                line-height: toRem(22);
+
+                &:hover {
+                    & ~ .rates__content-btn {
+                        background-color: $green;
+                        transition: 0.2s $cubic;
+                    }
+                }
+            }
+
+            &-btn {
+                width: toRem(20);
+                height: toRem(20);
+                transition: 0.2s $cubic;
+
+                &.is-active {
+                    & ~ .rates__content-popup {
+                        left: toRem(88);
+                    
+                        &::before {
+                            right: toRem(-20);
+                            top: toRem(20);
+                        }
+                    }
+                }
+            }
+
+            &-image {
+                width: toRem(10);
+                height: toRem(14);
+            }
+
+            &-nr {
+                font-size: toRem(24);
+                line-height: toRem(30);
+            }
+
+            &-text {
+                font-size: toRem(18);
+                line-height: toRem(22);
+            }
+
+            &-popup-closer {
+                top: toRem(14);
+                right: toRem(14);
+                width: toRem(16);
+                height: toRem(16);
+            }
+        }
+    }
+}
