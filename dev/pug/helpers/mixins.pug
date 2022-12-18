@@ -1,23 +1,32 @@
-mixin servicesItem(type, control, name, icon, preview)
-    li(id="" +type aria-expanded="false" onclick="toggleDisclosure(this.id);" aria-controls="" +control).services__item
-        .services__outer
-            span.services__icon
-                svg.services__icon-logo
-                    use(xlink:href="static/images/sprite/symbol/sprite.svg#" + icon)
-            h3.services__name=name
-            p.services__preview=preview
-            
-mixin servicesInner(type, bgInner, icon, description, link1, linkName1, link2, linkName2)
-    li(id="" +type).services__item.fullwidth.is-hidden
-        span.services__bg
-            svg.services__bg-logo
-                use(xlink:href="static/images/sprite/symbol/sprite.svg#" + icon)
-            img(src="static/images/content/" +bgInner width="" height="" alt="" +name).services__bg-img
-        p.services__description=description
-        a(href="" +link1 target="_blank").services__link=linkName1
-        a(href="" +link2 target="_blank").services__link=linkName2
+mixin teacherItem(image, name, description, popupImage, popupAbout, popupDescription)
+    .teacher__item.swiper-slide
+        picture.teacher__frame
+            source(srcset="static/images/content/" +image +".webp" type="image/webp")
+            img(src="static/images/content/" +image +".jpg" width="" height="" alt="" +name).teacher__frame-image
+        h3.teacher__name=name
+        span.teacher__about=description
+        span(data-name="" +name data-position="" +description data-image="static/images/content/" +popupImage data-about="" +popupAbout data-description="" +popupDescription).teacher__data
 
-mixin formInput(type, name, value, identifier, label)
-    li.form__line
-        input(type="" +type name="" +name value="" +value id="" +identifier).form__input
-        label(for="" +identifier).form__label=label
+mixin reviewItem(photo, title, courseImage, description, name, position)
+    .review__item.swiper-slide
+        picture.review__frame
+            source(srcset="static/images/content/" +photo +".webp" type="image/webp")
+            img(src="static/images/content/" +photo +".jpg" width="" height="" alt="").review__frame-image
+        .review__course
+            .review__course-body
+                span.review__course-note Курс
+                p.review__course-title=title
+            .review__course-poster
+                picture.review__course-frame
+                    source(srcset="static/images/content/" +courseImage +".webp" type="image/webp")
+                    img(src="static/images/content/" +courseImage +".jpg" width="" height="" alt="").review__course-image
+        p.review__description=description
+        b.review__name=name
+        span.review__position=position
+
+mixin breadcrumbsItem(text, href)
+    li.breadcrumbs__item
+        if(href)
+            a.breadcrumbs__link(href=href)=text
+        else
+            span.breadcrumbs__text=text

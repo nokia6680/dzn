@@ -13,27 +13,29 @@ html(lang="ru-RU")
         meta(http-equiv='X-UA-Compatible', content="IE = edge")
         <![endif]-->
         meta(name="viewport" content="width=device-width,initial-scale=1")
-        meta(name="keywords" content="")
         link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+        script(src="https://player.vimeo.com/api/player.js")
     body.body
         include ../modules/header/header
 
         main.main
             include ../modules/blocks/intro
-            include ../modules/blocks/portfolio
-            include ../modules/blocks/services
-            include ../modules/blocks/price
-            include ../modules/blocks/calc
+            include ../modules/blocks/about
+            include ../modules/blocks/teacher
+            include ../modules/blocks/program
+            include ../modules/blocks/process
+            include ../modules/blocks/review
             include ../modules/blocks/faq
-            include ../modules/blocks/rates
-            include ../modules/blocks/form
         include ../modules/footer/footer
         include ../modules/blocks/popup-order
+        include ../modules/blocks/popup-teacher
+        include ../modules/blocks/popup-video
+        include ../modules/blocks/thx
         script(src="static/js/libs.js")
         script(src="static/js/main.js")
-        script(src="static/js/services.js")
-        script(src="static/js/tabs.js")
-        script(src="static/js/tooltips.js")
-        script(src="static/js/textarea.js")
-        script(src="static/js/file.js")
+        script(src="static/js/slider.js")
+        script(src="static/js/placeholder.js")
+        script(src="static/js/teacher.js")
+        script(src="static/js/video.js")
+        script(src="static/js/details.js")
         block script

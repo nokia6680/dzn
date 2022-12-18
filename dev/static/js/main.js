@@ -11,9 +11,9 @@ var sandwichToggle = function sandwichToggle() {
             targetClassToggle = this.getAttribute('data-target-class-toggle');
         var body = document.querySelector('.body');
         var header = document.querySelector('.header');
-        this.classList.toggle('is-active');
         header.classList.toggle('is-active');
         body.classList.toggle('no-scroll');
+        
 
         if (targetId && targetClassToggle) {
             document.getElementById(targetId).classList.toggle(targetClassToggle);
@@ -23,20 +23,8 @@ var sandwichToggle = function sandwichToggle() {
 
 sandwichToggle(); // Menu hiding lib
 
-var linksOpener = document.getElementsByClassName('nav__item--links');
-var elNodes = document.querySelectorAll(".nav__item--links");
-var navInner = document.querySelector('.nav__list');
-var body = document.querySelector('.body');
-
-for (var i = 0; i < linksOpener.length; i++) {
-    var elem = linksOpener[i];
-    elem.addEventListener("click", function() {
-        navInner.classList.toggle('links-active');
-    });
-}
-
-var fastOpener = document.getElementsByClassName('js-fast-order');
-var elNodes = document.querySelectorAll(".js-fast-order");
+var fastOpener = document.getElementsByClassName('js-purchase');
+var elNodes = document.querySelectorAll(".js-purchase");
 var fastPopup = document.querySelector('.popup-order');
 var fastCloser = document.querySelector('.popup-order__closer');
 

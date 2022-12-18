@@ -1,31 +1,14 @@
 .section-title {
-    display: inline-flex;
-    width: 100%;
-    margin-bottom: toRem(30);
-    padding-bottom: toRem(10);
-    @include font-setting($primary-font, toRem(12), toRem(14), 700, $black);
-    text-align: left;
-    text-transform: uppercase;
-    border-bottom: toRem(1) solid $black;
+    @include font-setting($primary-font, toRem(24), toRem(31.2), 400, #000000);
+    margin-bottom: toRem(32);
 
     @include min-screen(768px) {
-        font-size: toRem(16);
-        line-height: toRem(19);
-        padding-bottom: toRem(20);
+        font-size: toRem(40);
+        line-height: toRem(52);
         margin-bottom: toRem(50);
-        border-width: toRem(2);
     }
 
-    @include min-screen(1024px) {
-        padding-bottom: toRem(16);
-        margin-bottom: toRem(50);
-        border-width: toRem(2);
-    }
-
-    @include min-screen(1280px) {
-        font-size: toRem(20);
-        line-height: toRem(24);
-        padding-bottom: toRem(20);
-        margin-bottom: toRem(80);
+    @include min-screen(1440px) {
+        margin-bottom: toRem(60);
     }
 }

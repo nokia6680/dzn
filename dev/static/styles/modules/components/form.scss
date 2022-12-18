@@ -1,845 +1,387 @@
 .form {
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    padding: toRem(32) 0 0 0;
-
-    &__item {
-        @include flex-setting(column, flex-start, flex-start);
-        width: 100%;
-        margin-bottom: toRem(16);
-    }
-
-    &__name {
-        @include flex-setting(row, space-between, center);
-        width: 100%;
-        margin-bottom: toRem(26);
-    }
-
-    &__fieldset {
-        @include flex-setting(column, flex-start, flex-start);
-        width: 100%;
-        padding: toRem(20) toRem(20) toRem(30) toRem(20);
-        margin-bottom: toRem(10);
-        margin-left: 0;
-        margin-right: 0;
-        background-color: $white;
-        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.03);
-        border: none;
-
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-    }
-
-    &__subtitle {
-        margin-bottom: toRem(25);
-        @include font-setting($primary-font, toRem(14), toRem(20), 500, $black);
-        letter-spacing: -0.017em;
-        text-align: left;
-    }
-
-    &__description {
-        margin-bottom: toRem(26);
-        @include font-setting($primary-font, toRem(12), toRem(17), 500, $black);
-        letter-spacing: -0.017em;
-        text-align: left;
-    }
 
     &__list {
         @include flex-setting(column, flex-start, flex-start);
         width: 100%;
-        gap: toRem(14);
-    }
+        gap: toRem(32);
+        margin-bottom: toRem(32);
 
-    &__line {
-        position: relative;
-        @include flex-setting(column, flex-start, flex-start);
-        width: 100%;
-        @include gapFallbackV(14px);
-
-        .form__description {
-            margin-top: toRem(10);
-            margin-bottom: 0;
+        &:last-of-type {
+            margin-bottom: toRem(64);
         }
     }
 
-    &__sublist {
-        @include flex-setting(column, flex-start, flex-start);
-        gap: toRem(12);
+    &__item {
         width: 100%;
-        padding-left: toRem(24);
-        padding-top: toRem(16);
 
-        .form__line {
-            @include gapFallbackV(12px);
+        @include flex-setting(column, center, center);
+        position: relative;
+        transition: 0.2s linear;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        &-wrap {
+            width: 100%;
+            @include flex-setting(column, flex-start, flex-start);
+
+            &--checkbox {
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: toRem(50);
+            }
+        }
+
+        // Стилизация штатного плейсхолдера
+        .placeholder {
+            @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black);
+            position: absolute;
+            bottom: toRem(16);
+            left: 0;
+            display: block;
+            padding: 0;
+            white-space: nowrap;
+
+            -webkit-transition: all, 0.2s;
+            transition: all, 0.2s;
+            pointer-events: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .form__label {
-            font-size: toRem(12);
+            // Под фокусом
+            &.active {
+                .placeholder {
+                    @include font-setting($secondary-font, toRem(12), toRem(17), 400, #A7A6A6);
+                    padding: 0;
+                    bottom: toRem(42);
+                    left: 0;
+                    // -webkit-transform: translateY(0);
+                    // transform: translateY(0);
+                }
+
+                // Когда написано
+                .form__input:not(:focus):not(:hover) ~ .placeholder {
+                    color: #A7A6A6;
+                }
+            }
+
+            &__label:disabled {
+                pointer-events: none;
+                
+                .placeholder {
+                    color: rgba(34, 34, 34, 0.2);
+                }
+                .form__input {
+                    border-color: rgba(34, 34, 34, 0.2);
+                }
+            }
+        }
+
+        &.error {
+            .form__label {
+                .placeholder {
+                    @include font-setting($secondary-font, toRem(12), toRem(17), 400, $red);
+                    top: toRem(-8);
+                    left: 0;
+                    -webkit-transform: translateY(0);
+                    transform: translateY(0);
+                }
+
+                .form__input {
+                    border-color: $red;
+                    transition: 0.2s $cubic;
+                    margin-bottom: toRem(8);
+                }
+
+                .form__input:not(:focus):not(:hover) ~ .placeholder {
+                    color: $red;
+                }
+            }
+
+            .form__error {
+                display: inline-flex;
+            }
         }
     }
 
-    &__input {
-        display: none;
-    }
-
     &__label {
-        @include font-setting($primary-font, toRem(14), toRem(20), 400, $black);
-        letter-spacing: -0.017em;
-        cursor: pointer;
+        width: 100%;
+        display: block;
+        @include font-setting($secondary-font, 0.625rem, 0.75rem, 400, $black-opacity);
+
+        position: relative;
     }
 
-    &__input[type="radio"] + label {
+    &__input {
+        position: relative;
+        width: 100%;
+        max-height: 59px;
+
+        @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black);
+        padding-bottom: toRem(16);
+        border: none;
+        border-bottom: toRem(1) solid rgba(34, 34, 34, 0.2);
+        border-radius: 0;
+
+        cursor: text;
+        outline: none;
+
+        transition: all 0.2s $cubic;
+
+        &::placeholder {
+            color: $black-opacity;
+        }
+
+        &:focus {
+            border-color: $black;
+            transition: 0.2s linear;
+
+            & + .form__label {
+                display: inline-flex;
+                color: $black;
+                transition: 0.2s linear;
+            }
+        }
+
+        &.error {
+            border-color: $red;
+            transition: 0.2s linear;
+        }
+    }
+
+    &__checkbox {
+        display: none;
+
+        &-label {
+            @include font-setting($secondary-font, toRem(14), toRem(17), 400, #000);
+        }
+    }
+
+    &__checkbox + label {
         position: relative;
         padding-left: toRem(30);
     }
 
-    &__input[type="radio"] + label::before {
+    &__checkbox + label::before {
         position: absolute;
-        left: 0;
-        top: 0;
         content: '';
 
         width: toRem(20);
         height: toRem(20);
-        background-color: $white;
-        border: toRem(1) solid $gray;
-        border-radius: 100%;
+        background-color: transparent;
+        border: toRem(1) solid $black-opacity;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
     }
 
-    &__input[type="radio"]:checked + label::before {
+    &__checkbox:checked + label::after {
         position: absolute;
-        left: 0;
-        top: 0;
         content: '';
 
         width: toRem(20);
         height: toRem(20);
-        background-color: $white;
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 1L5.96552 9L1 3.4' stroke='%23CA4748' stroke-width='2'/%3E%3C/svg%3E");
         background-position: 50% 50%;
-        background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='5' cy='5' r='5' fill='%23BCFF00'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
-        background-size: toRem(10) toRem(10);
-        border: toRem(1) solid $green;
-        border-radius: 100%;
-    }
-
-    &__input[type="radio"]:focus + label::before {
-        border-color: $green;
-        transition: 0.2s $cubic;
-    }
-
-    &__input[type="checkbox"] + label {
-        position: relative;
-        padding-left: toRem(34);
-    }
-
-    &__input[type="checkbox"] + label::before {
-        position: absolute;
+        background-size: toRem(12) toRem(8);
+        border: none;
+        top: 50%;
         left: 0;
-        top: 0;
-        content: '';
-
-        width: toRem(20);
-        height: toRem(20);
-        background-color: $white;
-        border: toRem(1) solid $gray;
-        border-radius: toRem(3);
+        transform: translateY(-50%);
     }
 
-    &__input[type="checkbox"]:focus + label::before {
-        border-color: $green;
-        transition: 0.2s $cubic;
+    &__checkbox.error + label::before {
+        border-color: red;
     }
 
-    &__input[type="checkbox"]:checked + label::after {
-        position: absolute;
-        left: 0;
-        top: 0;
-        content: '';
+    &__error {
+        @include font-setting($secondary-font, toRem(12), toRem(17), 400, $red);
 
-        width: toRem(20);
-        height: toRem(20);
-        background-color: $green;
-        background-position: 50% 50%;
-        background-image: url("data:image/svg+xml,%3Csvg width='13' height='12' viewBox='0 0 13 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.5 1.5L4.76812 11C4.76812 11 3.28513 8.85442 1 6.2381' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-size: toRem(13) toRem(12);
-        border: toRem(1) solid $green;
-        border-radius: toRem(3);
-    }
+        align-self: flex-start;
+        display: none;
 
-    &__switch {
-        @include flex-setting(row, flex-start, center);
-        width: 100%;
-        height: toRem(48);
-        margin-bottom: toRem(25);
-
-        &-label {
-            margin-right: toRem(12);
-            @include font-setting($primary-font, toRem(14), toRem(20), 500, $gray);
-            white-space: nowrap;
-        }
-
-        &-wrap {
-            position: relative;
-            @include flex-setting(column, center, center);
-            width: toRem(64);
-        }
-
-        &-input {
+        &.single {
             display: none;
-        }
-
-        &-slider {
-            position: relative;
-            width: toRem(64);
-            z-index: 1;
-            min-height: toRem(18);
-            height: toRem(18);
-            background-color: $medgray;
-            border-radius: toRem(24);
-            transition: 0.2s $cubic;
-
-            &::after {
-                position: absolute;
-                content: '';
-                
-                width: toRem(32);
-                height: toRem(1);
-                background-color: $white;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        &-tumbler {
-            position: absolute;
-            top: 50%;
-            left: toRem(-4);
-            z-index: 2;
-            transform: translateY(-50%);
-            width: toRem(28);
-            height: toRem(28);
-            background-color: $white;
-            border-radius: 100%;
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
-            transition: 0.2s $cubic;
-        }
-
-        &-input:checked ~ .form__switch-slider {
-            background-color: $green;
-            transition: 0.2s $cubic;
-        }
-
-        &-input:checked + .form__switch-tumbler {
-            transform: translate(44px, -50%);
-            transition: 0.2s $cubic;
-        }
-
-        &-input:hover + .form__switch-tumbler {
-            box-shadow: 1px 1px 5px $green;
-            transition: 0.2s $cubic;
-        }
-    }
-
-    &__range {
-        @include flex-setting(column, flex-start, flex-start);
-        width: 100%;
-        margin-bottom: toRem(26);
-    }
-
-    &__range-slider {
-        width: 100%;
-        margin-bottom: toRem(18);
-
-        .irs-max,
-        .irs-min,
-        .irs-from,
-        .irs-to {
-            display: none;
-        }
-
-        .irs--big {
-            height: toRem(28);
-        }
-
-        .irs--big {
-            .irs-handle {
-                background: $white;
-            }
-        }
-
-        .irs--round {
-            height: toRem(11);
-        }
-
-        .irs-bar {
-            top: 0;
-            background-color: $green;
-            height: toRem(4);
-        }
-
-        .irs-bar {
-            &.irs-bar--single {
-                background: $green;
-                border: none;
-            }
-        }
-
-        .irs-line {
-            top: 0;
-            height: toRem(4);
-            background: #D7D7D7;
-            border: none;
-        }
-
-        .irs-handle {
-            width: toRem(28);
-            height: toRem(28);
-            border-radius: 100%;
-            background-color: $white;
-            border: none;
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
-            top: toRem(-12);
-            
-            cursor: pointer;
-
-            &::after {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                content: '';
-
-                width: toRem(4);
-                height: toRem(4);
-                background: $medgray;
-                border-radius: 100%;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        .irs-single {
-            display: none;
-        }
-    }
-
-    &__range-controls {
-        @include flex-setting(row, flex-start, center);
-        width: 100%;
-        order: 2;
-    }
-
-    &__range-input {
-        display: inline-flex;
-        min-width: toRem(45);
-        width: auto;
-        max-width: toRem(55);
-        padding: toRem(10) toRem(15);
-        @include font-setting($primary-font, toRem(14), toRem(20), 500, $black);
-        text-align: center;
-        background: $lightgray;
-        border: toRem(1) solid $lightgray;
-        transition: 0.2s $cubic;
-        cursor: text;
-
-        &:focus {
-            border-color: $green;
-            transition: 0.2s $cubic;
-        }
-    }
-
-    &__range-name {
-        margin-right: toRem(12);
-        @include font-setting($primary-font, toRem(14), toRem(20), 500, $black);
-        letter-spacing: -0.017em;
-        text-align: left;
-    }
-
-    &__controls {
-        @include flex-setting(row, space-between, center);
-        width: 100%;
-        margin-bottom: toRem(20);
-
-        &-prev {
-            @include flex-setting(column, center, center);
-            width: auto;
-            padding: toRem(14) toRem(32);
-            margin-right: toRem(16);
-            @include font-setting($primary-font, toRem(15), toRem(18), 500, $black);
-            letter-spacing: 0.01em;
-            background-color: transparent;
-            border: toRem(1) solid $black;
-            border-radius: toRem(24);
-            transition: 0.2s $cubic;
-
-            &:active {
-                color: $white;
-                background-color: $black;
-                transition: 0.2s $cubic;
-            }
-        }
-
-        &-next {
-            @include flex-setting(column, center, center);
-            width: 100%;
-            padding: toRem(14) 0;
-            @include font-setting($primary-font, toRem(15), toRem(18), 500, $white);
-            letter-spacing: 0.01em;
-            text-transform: uppercase;
-            background-color: $black;
-            border: none;
-            border-radius: toRem(24);
-            transition: 0.2s $cubic;
-
-            &:active {
-                background-color: $green;
-                color: $black;
-                border-color: $green;
-                transition: 0.2s $cubic;
-            }
-        }
-    }
-
-    &__bottom {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 2;
-        @include flex-setting(column, flex-start, center);
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(12px);
-
-        &-progress {
-            position: absolute;
-            top: toRem(-6);
+            bottom: -1rem;
             left: 0;
-            z-index: 2;
-            width: 100%;
-            height: toRem(12);
-            border: 0;
-            background-color: transparent;
 
-            &::-webkit-progress-bar {
-                background-color: transparent;
-                border: none;
-                border-radius: 0;
-            }
+            position: absolute;
+            white-space: nowrap;
 
-            &::-webkit-progress-value {
-                background: $green;
+            &.active {
+                display: inline-flex;
             }
         }
     }
 
-    &__final {
-        @include flex-setting(column, flex-start, center);
-        width: 100%;
-        padding: toRem(25) 6.25% toRem(20) 6.25%;
+    &__description {
+        @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black-opacity);
+        text-align: left;
+        margin-bottom: toRem(32);
+    }
 
-        &-title {
-            display: none;
+    &__submit {
+        @include flex-setting(row, flex-start, center);
+        width: auto;
+        height: toRem(56);
+        padding: 0;
+        margin-bottom: toRem(16);
+        border: none;
+        background-color: transparent;
+        transition: 0.2s $cubic;
+
+        &-text {
+            @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black);
+            margin-right: toRem(16);
         }
 
-        &-list {
-            display: none;
+        &-btn {
+            @include flex-setting(column, center, center);
+            width: toRem(56);
+            height: toRem(56);
+            background: $darkwhite;
+            border: none;
+            border-radius: 100%;
+            transition: 0.2s $cubic;
+        }
+
+        &-image {
+            width: toRem(15);
+            height: toRem(9);
+            fill: $black;
+            transition: 0.2s $cubic;
+        }
+
+        &:active {
+            .form__submit-text {
+                color: $bordo;
+                transition: 0.2s $cubic;
+            }
+
+            .form__submit-btn {
+                background-color: $bordo;
+                transition: 0.2s $cubic;
+
+                svg {
+                    fill: $white;
+                    transition: 0.2s $cubic;
+                }
+            }
         }
     }
 
-    &__checkout {
-        @include flex-setting(row, space-between, center);
-        width: 100%;
+    &__agree {
+        @include font-setting($secondary-font, toRem(11), toRem(16), 400, $black-opacity);
+        text-align: left;
+        max-width: toRem(290);
 
-        &-name {
-            @include font-setting($primary-font, toRem(14), toRem(17), 700, $transgray);
-            text-transform: uppercase;
-        }
+        a {
+            color: $black;
+            text-decoration: underline;
+            text-underline-offset: toRem(3);
+            text-decoration-color: $black-opacity;
+            text-decoration-thickness: toRem(1);
+            transition: 0.2s $cubic;
 
-        &-nr {
-            @include font-setting($primary-font, toRem(14), toRem(17), 700, $transgray);
-            text-transform: uppercase;
+            &:active {
+                text-decoration-color: $black;
+                transition: 0.2s $cubic;
+            }
         }
     }
 }
 
 @include min-screen(768px) {
-    .form {
-        display: grid;
-        grid-template-columns: 55% 42%;
-        grid-row-gap: toRem(32);
-        justify-content: space-between;
-        align-items: start;
-
-        &__item {
-            grid-column: 1 / 2;
-            grid-row: 1 / 2;
-            margin-bottom: 0;
-            // temporary
-            &:not(:first-of-type) {
-                display: none;
-            }
-        }
-    
-        &__name {
-            margin-bottom: toRem(12);
-        }
-    
-        &__fieldset {
-            position: relative;
-            padding: toRem(24) toRem(24) toRem(32) toRem(24);
-            margin-bottom: toRem(12);
+    .form {    
+        &__list {
+            gap: toRem(44) toRem(32);
+            flex-wrap: wrap;
+            height: toRem(124);
+            max-height: toRem(124);
+            margin-bottom: toRem(50);
     
             &:last-of-type {
-                margin-bottom: 0;
+                margin-bottom: toRem(32);
             }
         }
     
-        &__subtitle {
-            margin-bottom: toRem(20);
-            line-height: toRem(17);
-        }
-    
-        &__description {
-            margin-bottom: toRem(25);
-        }
-    
-        &__list {
-            gap: toRem(20);
-        }
-    
-        &__line {
-            @include gapFallbackV(20px);
-    
-            .form__description {
-                margin-top: toRem(12);
-                margin-bottom: 0;
-            }
-        }
-    
-        &__sublist {
-            padding-left: toRem(32);
-        }
+        &__item {
+            max-width: toRem(322);
 
-        &__switch {
-            // position: absolute;
-            // top: toRem(20);
-            // right: toRem(32);
-            height: toRem(22);
-            // margin-bottom: 0;
-    
-            &-label {
-                margin-right: toRem(12);
-                font-size: toRem(12);
-                line-height: toRem(17);
-            }
-    
             &-wrap {
-                width: toRem(44);
-            }
-    
-            &-slider {
-                width: toRem(44);
-                min-height: toRem(14);
-                height: toRem(14);
-    
-                &::after {
-                    width: toRem(25);
+                &--checkbox {
+                    margin-bottom: toRem(40);
                 }
             }
-    
-            &-tumbler {
-                left: toRem(-4);
-                width: toRem(22);
-                height: toRem(22);
-            }
-    
-            &-input:checked + .form__switch-tumbler {
-                transform: translate(30px, -50%);
-            }
-        }
-    
-        &__controls {
-            grid-column: 1 / 2;
-            grid-row: 2 / 3;
-            justify-content: space-between;
-            margin-bottom: 0;
-    
-            &-prev {
-                padding: toRem(14) toRem(40);
-                margin-right: 0;
-            }
-    
-            &-next {
-                width: auto;
-                padding: toRem(14) toRem(40);
-            }
-        }
-    
-        &__bottom {
-            grid-column: 2 / 3;
-            grid-row: 1 / 2;
-            position: relative;
-            bottom: auto;
-            left: auto;
-            margin-top: toRem(39);
-            padding-top: toRem(14);
-            background-color: transparent;
-            backdrop-filter: none;
-
-            &::before {
-                position: absolute;
-                content: '';
-
-                width: 100%;
-                height: toRem(2);
-                background-color: $black;
-                top: 0;
-                left: 0;
-            }
-    
-            &-progress {
-                top: toRem(-5);
-            }
-        }
-    
-        &__final {
-            align-items: flex-start;
-            padding: toRem(32) 0;
-            background-color: $white;
-    
-            &-title {
-                display: block;
-                margin-left: toRem(24);
-                margin-bottom: toRem(20);
-                @include font-setting($primary-font, toRem(16), toRem(20), 700, $black);
-                text-transform: uppercase;
-                letter-spacing: 0.023em;
-            }
-    
-            &-list {
-                @include flex-setting(column, flex-start, flex-start)
-                gap: toRem(15);
-                width: 100%;
-                padding: 0 toRem(24);
-                margin-bottom: toRem(40);
-            }
-
-            &-item {
-                @include flex-setting(row, space-between, center);
-                width: 100%;
-                @include gapFallbackV(15px);
-                padding-top: toRem(15);
-                border-top: toRem(2) solid $darkwhite;
-            }
-
-            &-name {
-                @include font-setting($primary-font, toRem(14), toRem(17), 500, $black);
-                letter-spacing: -0.01em;
-            }
-
-            &-price {
-                @include font-setting($primary-font, toRem(14), toRem(17), 500, $black);
-                letter-spacing: -0.01em;
-            }
-        }
-    
-        &__checkout {
-            padding-top: toRem(30);
-            padding-left: toRem(24);
-            padding-right: toRem(24);
-            border-top: toRem(2) solid $gray;
-
-            &-name {
-                font-size: toRem(20);
-                line-height: toRem(24);
-            }
-    
-            &-nr {
-                font-size: toRem(20);
-                line-height: toRem(24);
-            }
-        }
-    }
-}
-
-@include min-screen(1024px) {
-    .form {
-        grid-template-columns: 66.1017% 32.2039%;
-        grid-row-gap: toRem(24);
-
-        &__switch {
-            position: absolute;
-            top: toRem(20);
-            right: toRem(32);
-            width: auto;
-            margin-bottom: 0;
         }
 
-        &__bottom {
-            margin-top: toRem(35);
-        }
-    }
-}
-
-@include min-screen(1280px) {
-    .form {
-        grid-template-columns: 66% 32.1489%;
-        grid-row-gap: toRem(30);
-
-        &__name {
-            margin-bottom: toRem(15);
-        }
     
-        &__fieldset {
-            padding: toRem(30) toRem(30) toRem(40) toRem(30);
-            margin-bottom: toRem(15);
-    
-            &:last-of-type {
-                margin-bottom: 0;
-            }
-        }
-    
-        &__subtitle {
-            margin-bottom: toRem(25);
-            font-size: toRem(18);
-            line-height: toRem(22);
-        }
-    
-        &__list {
-            gap: toRem(25);
-        }
-    
-        &__line {
-            @include gapFallbackV(25px);
-    
-            .form__description {
-                margin-top: toRem(10);
-                margin-bottom: 0;
-            }
-        }
-
-        &__input[type="radio"]:hover + label::before {
-            border-color: $green;
-            transition: 0.2s $cubic;
-        }
-
-        &__input[type="checkbox"]:hover + label::before {
-            border-color: $green;
-            transition: 0.2s $cubic;
-        }
-
-        &__switch {
-            top: toRem(34);
-            right: toRem(40);
-
+        &__checkbox {
             &-label {
-                font-size: toRem(14);
+                font-size: toRem(16);
                 line-height: toRem(20);
             }
-
-            &-wrap {
-                width: toRem(64);
-            }
-
-            &-slider {
-                width: toRem(64);
-                min-height: toRem(18);
-                height: toRem(18);
-    
-                &::after {
-                    width: toRem(32);
-                }
-            }
-    
-            &-tumbler {
-                left: toRem(-4);
-                z-index: 2;
-                width: toRem(28);
-                height: toRem(28);
-                cursor: pointer;
-            }
-    
-            &-input:checked + .form__switch-tumbler {
-                transform: translate(44px, -50%);
-                transition: 0.2s $cubic;
-            }
-        }
-
-        &__controls {
-            &-prev {
-                padding: toRem(18) toRem(50);
-                font-size: toRem(18);
-                line-height: toRem(22);
-                border-radius: toRem(30);
-
-                &:hover {
-                    background-color: $black;
-                    color: $white;
-                    transition: 0.2s $cubic;
-                }
-            }
-    
-            &-next {
-                padding: toRem(18) toRem(50);
-                font-size: toRem(18);
-                line-height: toRem(22);
-                border-radius: toRem(30);
-
-                &:hover {
-                    background-color: $green;
-                    color: $black;
-                    border-color: $green;
-                    transition: 0.2s $cubic;
-                }
-            }
-        }
-
-        &__range-name {
-            cursor: pointer;
-        }
-
-        &__range-name:hover + input {
-            border-color: $green;
-            transition: 0.2s $cubic;
         }
     
-        &__bottom {
-            margin-top: toRem(45);
-            padding-top: toRem(15);
+        &__checkbox + label {
+            padding-left: toRem(34);
         }
     
-        &__final {
-            padding-top: toRem(40);
-            padding-right: toRem(40);
+        &__checkbox + label::before {
+            width: toRem(24);
+            height: toRem(24);
+        }
     
-            &-title {
-                margin-left: toRem(30);
-                margin-bottom: toRem(38);
-                font-size: toRem(20);
-                line-height: toRem(24);
-            }
+        &__checkbox:checked + label::after {
+            width: toRem(24);
+            height: toRem(24);
+            background-size: toRem(14.5) toRem(10);
+        }
+
+        &__description {
+            font-size: toRem(16);
+            line-height: toRem(22);
+            max-width: toRem(352);
+            margin-bottom: toRem(32);
+        }
     
-            &-list {
-                padding: 0 toRem(30);
-            }
-
-            &-name {
-                font-size: toRem(18);
-                line-height: toRem(22);
-            }
-
-            &-price {
-                font-size: toRem(18);
+        &__submit {
+            position: absolute;
+            height: toRem(56);
+            margin-bottom: 0;
+            bottom: toRem(32);
+            right: toRem(46);
+    
+            &-text {
+                font-size: toRem(16);
                 line-height: toRem(22);
             }
         }
     
-        &__checkout {
-            padding-top: toRem(35);
-            padding-left: toRem(30);
-            padding-right: toRem(30);
+        &__agree {
+            font-size: toRem(12);
+            line-height: toRem(17);
+            max-width: toRem(270);
+        }
+    }
+}
+
+@include min-screen(1440px) {
+    .form {
+        &__label:hover {
+            .form__input {
+                border-color: $black;
+            }
         }
     }
 }

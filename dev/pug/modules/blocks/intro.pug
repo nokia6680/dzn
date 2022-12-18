@@ -1,8 +1,16 @@
 section.intro
-    h1.intro__title 
-        span Разработка 
-        span и&nbsp;
-        span обслуживание 
-        span веб-проектов
-    p.intro__description проектирование, создание и продвижение сайтов
-    a(href="calculator.html" target="_self").intro__link Рассчитать стоимость
+    .intro__player 
+        video(src="static/videos/trailer.mp4" loop autoplay muted poster="static/images/content/video-poster.png").intro__player-video#myVideo
+        .intro__player-overlay
+    .intro__body
+        h1.intro__title Digital-курс Энотрии для&nbsp;любителей вина
+
+        .intro__controls
+            button(type="button").intro__controls-video.js-video Видео
+            button(type="button").intro__controls-purchase.js-purchase Купить курс
+    .intro__bottom
+        p.intro__bottom-description Авторская программа обучения от школы вина Энотрия в on-line формате
+        .intro__price
+            b.intro__price-title Стоимость курса
+            span.intro__price-nr.intro__price-nr--new 6 900 ₽
+            span.intro__price-nr.intro__price-nr--old 9 900 ₽

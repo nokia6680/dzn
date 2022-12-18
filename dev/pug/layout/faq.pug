@@ -1,0 +1,45 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+    body.body
+        include ../modules/header/header
+
+        main.main
+            ul.breadcrumbs
+                +breadcrumbsItem('Профессии', 'index.html')
+                +breadcrumbsItem('FAQ')
+            section.rules
+                h1.rules__title FAQ
+
+                .rules__block
+                    h2.rules__subtitle 1. Как понять, что оплата прошла?
+                    p.rules__description Вам на почту должен прийти чек, обязательно проверьте папку спам. Если письма нет, пожалуйста, напишите на почту 
+                        a(href="mailto:winestage@simple.ru" target="_blank") winestage@simple.ru
+                
+                .rules__block
+                    h2.rules__subtitle 2. Когда со мной свяжутся?
+                    p.rules__description Перед доставкой с вами свяжется курьерская служба. Перед выпуском каждого нового Wine Stage вы будете получать общее письмо от редакции с информацией о том, когда начнётся рассылка.
+                
+                .rules__block
+                    h2.rules__subtitle Способы оплаты
+                    p.rules__description Обычно доставка занимает 14 дней с момента анонса о выходе нового выпуска, который печатается в марте, июне, сентябре и декабре. Если вы приобрели одно издание из уже вышедших или подборку, то доставка также займет около двух недель.
+                    p.rules__description При этом есть возможность забрать издание самостоятельно из ближайшей винотеки без дополнительной оплаты доставки.
+        include ../modules/footer/footer
+        include ../modules/blocks/popup-order
+        script(src="static/js/libs.js")
+        script(src="static/js/main.js")
+        script(src="static/js/placeholder.js")
+        block script

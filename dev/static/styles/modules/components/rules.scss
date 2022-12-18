@@ -1,0 +1,174 @@
+.rules {
+    @include flex-setting(column, flex-start, flex-start);
+    width: 100%;
+    padding: 0 4.4444%;
+    margin-bottom: toRem(64);
+
+    &__title {
+        @include font-setting($primary-font, toRem(24), toRem(31), 400, #000);
+        margin-bottom: toRem(32);
+    }
+
+    &__block {
+        @include flex-setting(column, flex-start, flex-start);
+        margin-bottom: toRem(24);
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        & > * {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__subtitle {
+        @include font-setting($primary-font, toRem(18), toRem(25), 400, #000);
+        margin-bottom: toRem(16);
+        text-align: left;
+    }
+
+    &__description {
+        @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black-opacity);
+        text-align: left;
+        margin-bottom: toRem(10);
+
+        a {
+            color: $bordo;
+            text-decoration: underline;
+            text-underline-offset: toRem(1);
+            text-decoration-color: $bordo;
+            transition: 0.2s $cubic;
+
+            &:active {
+                color: $black;
+                text-decoration-color: $black;
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+
+    &__list {
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        gap: toRem(8);
+        margin-bottom: toRem(16);
+
+        &-item {
+            position: relative;
+            @include flex-setting(row, flex-start, center);
+            padding-left: toRem(8);
+
+            span {
+                @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black-opacity);
+                text-align: left;
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+
+                width: toRem(4);
+                height: toRem(4);
+                background-color: $bordo;
+                border-radius: 100%;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    &__logos {
+        display: grid;
+        grid-template-columns: repeat(4, toRem(62));
+        grid-column-gap: toRem(26);
+        justify-content: start;
+        align-items: center;
+
+        &-item {
+            @include flex-setting(column, center, center);
+            width: 100%;
+            height: toRem(30);
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+@include min-screen(768px) {
+    .rules {
+        padding: 0 4.1667%;
+        margin-bottom: toRem(80);
+    
+        &__title {
+            font-size: toRem(40);
+            line-height: toRem(52);
+            margin-bottom: toRem(50);
+        }
+    
+        &__block {
+            margin-bottom: toRem(50);
+    
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+    
+            & > * {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    
+        &__subtitle {
+            font-size: toRem(24);
+            line-height: toRem(33);
+            margin-bottom: toRem(24);
+        }
+    
+        &__description {
+            font-size: toRem(18);
+            line-height: toRem(25);
+            margin-bottom: toRem(20);
+        }
+    
+        &__list {
+            margin-bottom: toRem(24);
+    
+            &-item {
+                span {
+                    font-size: toRem(18);
+                    line-height: toRem(25);
+                }
+            }
+        }
+    
+        &__logos {
+            grid-template-columns: repeat(4, toRem(98));
+            grid-column-gap: toRem(42);
+    
+            &-item {
+                height: toRem(48);
+            }
+        }
+    }
+}
+
+@include min-screen(1440px) {
+    .rules {
+        --padding: calc(100% - 1360px);
+        padding-left: calc(var(--padding) / 2);
+        padding-right: calc(var(--padding) / 2);
+
+        & > * {
+            max-width: toRem(704);
+        }
+    }
+}

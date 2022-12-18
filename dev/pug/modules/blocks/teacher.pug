@@ -1,0 +1,20 @@
+section.teacher#teacher
+    h2.teacher__title.section-title Преподаватели
+    .teacher__slider
+        .swiper-wrapper
+            +teacherItem('teacher-1', 'Анатолий Корнеев', 'Основатель и вице-президент компании Simple', 'teacher-popup-1', 'Учеба у Мишеля Гарнеро (1990 — 1992), AJOG, Manosque, Chateau, Arnoux-St.Auban, France.', 'Ведущий авторских курсов по маркетингу и интернационали-зации бизнеса в ВШЭ и университете Sant’Anna в городе Пиза. Известный вин-ный эксперт, инициатор создания и ведущий преподаватель школы вина «Энотрия», вдохновитель популярного издания о вине Simple Wine News')
+            +teacherItem('teacher-2', 'Вероника Денисова', 'Винный эксперт-консультант', 'teacher-2', '', '', '')
+            +teacherItem('teacher-3', 'Галина Казначеева', 'Заместитель директора и ведущий преподаватель школы', 'teacher-3', '', '')
+            +teacherItem('teacher-4', 'Илья Кирилин', 'Винный эксперт-консультант', 'teacher-4', '', '', '')
+            +teacherItem('teacher-1', 'Анатолий Корнеев', 'Основатель и вице-президент компании Simple', 'teacher-1', '', '')
+            +teacherItem('teacher-2', 'Вероника Денисова', 'Винный эксперт-консультант', 'teacher-2', '', '', '')
+            +teacherItem('teacher-3', 'Галина Казначеева', 'Заместитель директора и ведущий преподаватель школы', 'teacher-3', '', '')
+            +teacherItem('teacher-4', 'Илья Кирилин', 'Винный эксперт-консультант', 'teacher-4', '', '')
+
+        .teacher__controls
+            button(type="button").teacher__controls-prev
+                svg.teacher__controls-image
+                    use(xlink:href="static/images/sprite/symbol/sprite.svg#lo")
+            button(type="button").teacher__controls-next
+                svg.teacher__controls-image
+                    use(xlink:href="static/images/sprite/symbol/sprite.svg#lo")

@@ -1,0 +1,45 @@
+- var processItem = [{icon: 'process-1', title: 'Погружение', description: 'Теоретическая часть,  где вы познакомитесь  с миром вина'}, {icon: 'process-2', title: 'Дегустация', description: 'Попробуете десятки  различных видов вина'}, {icon: 'process-3', title: 'Экзамен', description: 'Преподаватели проверят ваши знания перед вручением диплома'}, {icon: 'process-4', title: 'Диплом', description: 'Даёт основания претендовать на перспективные вакансии'}]
+
+section.process#study
+    h2.process__title.section-title Как проходит обучение
+    ul.process__list
+        for i in processItem 
+            li.process__item
+                span(data-icon="" +i.icon).process__icon
+                h3.process__name=i.title
+                p.process__description=i.description
+    .process__slider
+        .swiper-wrapper
+            .process__slide.swiper-slide
+                picture.process__frame 
+                    source(srcset="static/images/content/process-1.webp" type="image/webp")
+                    img(src="static/images/content/process-1.jpg" width="" height="" alt="").process__frame-image
+                span(data-title="Вечерняя группа").process__caption 
+            .process__slide.swiper-slide
+                picture.process__frame 
+                    source(srcset="static/images/content/process-1.webp" type="image/webp")
+                    img(src="static/images/content/process-1.jpg" width="" height="" alt="").process__frame-image
+                span(data-title="Вечерняя группа2").process__caption
+            .process__slide.swiper-slide
+                picture.process__frame 
+                    source(srcset="static/images/content/process-1.webp" type="image/webp")
+                    img(src="static/images/content/process-1.jpg" width="" height="" alt="").process__frame-image
+                span(data-title="Вечерняя группа3").process__caption
+            .process__slide.swiper-slide
+                picture.process__frame 
+                    source(srcset="static/images/content/process-1.webp" type="image/webp")
+                    img(src="static/images/content/process-1.jpg" width="" height="" alt="").process__frame-image
+                span(data-title="Вечерняя группа4").process__caption
+            .process__slide.swiper-slide
+                picture.process__frame 
+                    source(srcset="static/images/content/process-1.webp" type="image/webp")
+                    img(src="static/images/content/process-1.jpg" width="" height="" alt="").process__frame-image
+                span(data-title="Вечерняя группа5").process__caption
+        .process__pagination
+        .process__controls
+            button(type="button").process__controls-prev
+                svg.process__controls-image
+                    use(xlink:href="static/images/sprite/symbol/sprite.svg#lo")
+            button(type="button").process__controls-next
+                svg.process__controls-image
+                    use(xlink:href="static/images/sprite/symbol/sprite.svg#lo")

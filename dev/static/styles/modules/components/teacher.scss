@@ -1,0 +1,178 @@
+.teacher {
+    @include flex-setting(column, flex-start, flex-start);
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: toRem(64);
+
+    &__title {
+        margin-left: 4.4444%;
+    }
+
+    &__slider {
+        width: 100%;
+    }
+
+    &__item {
+        width: 100% !important;
+        max-width: toRem(300);
+        @include flex-setting(column, flex-start, flex-start);
+        cursor: pointer;
+
+        &:active {
+            .teacher__name {
+                color: $bordo;
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+
+    &__frame {
+        @include flex-setting(column, center, center);
+        width: toRem(300);
+        height: toRem(300);
+        max-height: toRem(300);
+        margin-bottom: toRem(24);
+    }
+
+    &__name {
+        @include font-setting($primary-font, toRem(18), toRem(25), 400, $black);
+        margin-bottom: toRem(8);
+        transition: 0.2s $cubic;
+    }
+
+    &__about {
+        @include font-setting($secondary-font, toRem(14), toRem(19), 400, $black-opacity);
+        text-align: left;
+    }
+
+    &__controls {
+        display: none;
+    }
+}
+
+@include min-screen(768px) {
+    .teacher {
+        margin-bottom: toRem(80);
+        padding-left: 4.1667%;
+        padding-right: 4.1667%;
+    
+        &__title {
+            margin-left: 0;
+        }
+    
+        &__item {
+            max-width: toRem(344);
+        }
+
+        &__slider {
+            overflow: hidden;
+        }
+
+        .swiper-wrapper {
+            margin-bottom: toRem(24);
+        }
+    
+        &__frame {
+            width: toRem(344);
+            height: toRem(344);
+            max-height: toRem(344);
+            margin-bottom: toRem(32);
+        }
+    
+        &__name {
+            font-size: toRem(24);
+            line-height: toRem(33);
+        }
+    
+        &__about {
+            font-size: toRem(16);
+            line-height: toRem(22);
+        }
+
+        &__controls {
+            @include flex-setting(row, center, center);
+            width: toRem(128);
+            margin-left: auto;
+            margin-right: 0;
+
+            &-prev,
+            &-next {
+                @include flex-setting(column, center, center);
+                width: toRem(56);
+                height: toRem(56);
+                border: none;
+                border-radius: 100%;
+                background-color: $darkwhite;
+                transition: 0.2s $cubic;
+
+                &:active {
+                    background-color: $bordo;
+                    transition: 0.2s $cubic;
+
+                    svg {
+                        fill: $white;
+                        transition: 0.2s $cubic;
+                    }
+                }
+            }
+
+            &-prev {
+                margin-right: toRem(16);
+
+                .teacher__controls-image {
+                    transform: scale(-1);
+                }
+            }
+
+            &-image {
+                width: toRem(15);
+                height: toRem(9);
+                fill: $black;
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+}
+
+@include min-screen(1440px) {
+    .teacher {
+        --padding: calc(100% - 1360px);
+        margin-bottom: toRem(120);
+        padding-left: calc(var(--padding) / 2);
+        padding-right: calc(var(--padding) / 2);
+    
+        &__title {
+            margin-left: 0;
+        }
+    
+        &__item {
+            max-width: toRem(328);
+
+            &:hover {
+                .teacher__name {
+                    color: $bordo;
+                    transition: 0.2s $cubic;
+                }
+            }
+        }
+    
+        &__frame {
+            width: toRem(328);
+            height: toRem(328);
+            max-height: toRem(328);
+        }
+
+        &__controls-prev,
+        &__controls-next {
+            &:hover {
+                background-color: $bordo;
+                transition: 0.2s $cubic;
+
+                svg {
+                    fill: $white;
+                    transition: 0.2s $cubic;
+                }
+            }
+        }
+    }
+}

@@ -1,31 +1,52 @@
--var headRadio = [{name: 'Лендинг', val: 'type-1'}, {name: 'Визитка', val: 'type-2'}, {name: 'Услуги(B2B)', val: 'type-3'}, {name: 'Интернет-магазин', val: 'type-4'}, {name: 'Другое', val: 'type-5'}]
-
 .popup-order
     .popup-order__wrapper
         button(type="button").popup-order__closer
-            svg.popup-order__closer-image
-                use(xlink:href="static/images/sprite/symbol/sprite.svg#green-cross")
-        form(method="" action="").popup-order__form.order-form
-            ul.order-form__head
-                for i in headRadio
-                    li.order-form__option
-                        input(type="radio" name="order-type" value="" +i.val id="" +i.val).order-form__radio
-                        label(for="" +i.val).order-form__label=i.name
-            ul.order-form__list
-                li.order-form__item
-                    label(for="order-textarea").order-form__label
-                    textarea(name="order-textarea" id="order-textarea" placeholder="Здравствуйте! Хочу заказать сайт услуг для B2B.").order-form__textarea
-                li.order-form__item
-                    label(for="order-name").order-form__label
-                    input(type="text" name="order-name" id="order-name" placeholder="Имя").order-form__input
-                li.order-form__item
-                    label(for="order-tel").order-form__label
-                    input(type="tel" name="order-tel" id="order-tel" placeholder="Телефон").order-form__input
-                li.order-form__item
-                    label(for="order-mail").order-form__label
-                    input(type="email" name="order-mail" id="order-mail" placeholder="Почта").order-form__input
-            .order-form__docs
-                input(type="file" name="order-file" id="order-file").order-form__file
-                label(for="order-file").order-form__upload ↑ Прикрепить файл
-                span.order-form__note Можете добавить бриф, архив с референсами, ТЗ и любые документы (до 50 Мб) 
-            button(type="submit").order-form__submit Отправить
+
+        h3.popup-order__title Оплатить курс
+        p.popup-order__description После оплаты курса, мы пришлем доступы в личный кабинет на вашу почту
+
+        form(name="order-form" method="" action="").popup-order__form.form
+            ul.form__list
+                li(oninput="this.className = 'form__item'").form__item
+                    .form__item-wrap.form-line
+                        label(for="order-name").form__label.js-label
+                            input(type="text" name="order-name" id="order-name" placeholder="Имя*" oninput="this.className = 'form__input'" required).form__input.js-input
+                        span.form__error
+                li(oninput="this.className = 'form__item'").form__item
+                    .form__item-wrap.form-line
+                        label(for="order-tel").form__label.js-label
+                            input(type="tel" name="order-tel" id="order-tel" placeholder="Телефон" oninput="this.className = 'form__input js-phone-input'" required).form__input.js-phone-input.js-input
+                        span.form__error
+                li(oninput="this.className = 'form__item'").form__item
+                    .form__item-wrap.form-line
+                        label(for="order-mail").form__label.js-label
+                            input(type="email" name="order-mail" id="order-mail" placeholder="E-mail*" oninput="this.className = 'form__input'" required).form__input.js-input
+                        span.form__error
+            .form__item
+                .form__item-wrap.form-line.form__item-wrap--checkbox
+                    input(type="checkbox" name="order-gift" id="order-gift" value="order-gift").form__checkbox
+                    label(for="order-gift").form__checkbox-label Оформить сертификат в подарок
+            p.form__description  Пожалуйста, укажите контактные данные получателя
+            ul.form__list
+                li(oninput="this.className = 'form__item'").form__item
+                    .form__item-wrap.form-line
+                        label(for="gift-name").form__label.js-label
+                            input(type="text" name="gift-name" id="gift-name" placeholder="Имя" oninput="this.className = 'form__input'" required).form__input.js-input
+                        span.form__error
+                li(oninput="this.className = 'form__item'").form__item
+                    .form__item-wrap.form-line
+                        label(for="gift-tel").form__label.js-label
+                            input(type="tel" name="gift-tel" id="gift-tel" placeholder="Телефон" oninput="this.className = 'form__input js-phone-input'" required).form__input.js-phone-input.js-input
+                        span.form__error
+                li(oninput="this.className = 'form__item'").form__item
+                    .form__item-wrap.form-line
+                        label(for="gift-mail").form__label.js-label
+                            input(type="email" name="gift-mail" id="gift-mail" placeholder="E-mail" oninput="this.className = 'form__input'" required).form__input.js-input
+                        span.form__error
+            button(type="submit").form__submit 
+                span.form__submit-text Отправить
+                spam.form__submit-btn 
+                    svg.form__submit-image
+                        use(xlink:href="static/images/sprite/symbol/sprite.svg#lo")
+            span.form__agree Нажимая кнопку «Отправить», вы соглашаетесь с условиями 
+                a(href="#" target="_blank") Политики конфиденциальности

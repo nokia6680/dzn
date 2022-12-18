@@ -1,0 +1,94 @@
+.popup-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $black-opacity;
+    backdrop-filter: blur(5px);
+    @include flex-setting(column, center, center);
+    transition: 0.2s $cubic;
+
+    display: none;
+    z-index: 999;
+
+    &.is-active {
+        display: flex;
+    }
+
+    &__wrapper {
+        position: relative;
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        height: auto;
+        background-color: $white;
+    }
+
+    &__closer {
+        position: absolute;
+        top: toRem(-64);
+        right: 4.4444%;
+        @include flex-setting(column, center, center);
+        width: toRem(56);
+        height: toRem(56);
+        border: none;
+        border-radius: 100%;
+        background-color: $darkwhite;
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23222222'/%3E%3C/svg%3E");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: toRem(16) toRem(16);
+        z-index: 2;
+
+        &:active {
+            background-color: $bordo;
+            transition: 0.2s $cubic;
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23ffffff'/%3E%3C/svg%3E");
+        }
+    }
+
+    &__player {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    &__frame {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left;
+    }
+}
+
+@include min-screen(1440px) {
+    .popup-video {
+        &__wrapper {
+            max-width: toRem(960);
+        }
+    
+        &__closer {
+            top: toRem(-64);
+            right: toRem(-64);
+    
+            &:hover {
+                background-color: $bordo;
+                transition: 0.2s $cubic;
+                background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23ffffff'/%3E%3C/svg%3E");
+            }
+        }
+    
+        &__player {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16 / 9;
+        }
+    
+        &__frame {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left;
+        }
+    } 
+}

@@ -7,12 +7,13 @@
 @import "utils/fluid-font";
 @import "utils/functions";
 @import "utils/typo";
+@import "utils/breadcrumbs";
 //@include sprites($spritesheet-sprites);
 
 
 :root {
     --vh: 1vh;
-    accent-color: $green;
+    accent-color: $bordo;
 }
 
 html {
@@ -32,14 +33,6 @@ body {
   background-color: $white;
 
   position: relative;
-}
-
-.body-calc {
-  background-color: #F4F4F4;
-
-  .header__toggle-opener {
-    fill: $black;
-  }
 }
 
 *,

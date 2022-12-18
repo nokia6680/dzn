@@ -1,0 +1,16 @@
+- var programItems = [{step: 'Тема 1.', name: 'Производство вина', teacher: 'александр рассадкин', description: 'Для оплаты товара с помощью банковской карты на соответствующей странице необходимо нажать кнопку Оплата заказа банковской картой. Оплата происходит через ПАО СберБанк с использованием банковских карт следующих платёжных систем: Мир, Visa International, Mastercard Worldwide, JCB.'}, {step: 'Тема 2.', name: 'Дегустация вина', teacher: 'вероника денисова', description: 'Для оплаты товара с помощью банковской карты на соответствующей странице необходимо нажать кнопку Оплата заказа банковской картой.'}, {step: 'Тема 3.', name: 'Хранение и сортировка вина', teacher: 'александр рассадкин', description: 'Для оплаты товара с помощью Оплата заказа банковской картой.'}, {step: 'Тема 4.', name: 'Цена VS ценность. Позиционирование вина на рынке', teacher: 'анатолий корнеев', description: 'Для оплаты товара с помощью Оплата заказа банковской картой.'}, {step: 'Тема 5.', name: 'Стили красных вин', teacher: 'Илья кириллин', description: 'Оплата заказа банковской картой.'}, {step: 'Тема 6.', name: 'Стили белых и розовых вин', teacher: 'Владислав маркин', description: 'Оплата заказа банковской картой.'}, {step: 'Тема 7.', name: 'Стили игристых вин', teacher: 'галина казначеева', description: 'Оплата заказа банковской картой.'}, {step: 'Тема 8.', name: 'Стили сладких крепленых вин', teacher: 'олег осокин', description: 'Оплата банковской картой.'}, {step: 'Тема 9.', name: 'Этикетка — паспорт вина', teacher: 'сандро хатиашвили', description: 'Оплата банковской картой.'}]
+
+section.program#program
+    h2.program__title.section-title Программа курса
+    p.program__description 9 видео-уроков по 15-20 минут    
+    .program__list
+        for i in programItems 
+            details.program__item 
+                summary.program__name
+                    p.program__name-title 
+                        span.program__name-step=i.step
+                        span.program__name-text=i.name 
+                    span.program__name-teacher=i.teacher
+                    span.program__name-opener
+                .program__inner 
+                    p.program__inner-description=i.description

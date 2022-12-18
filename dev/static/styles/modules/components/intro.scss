@@ -1,267 +1,296 @@
 .intro {
+    position: relative;
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    height: calc(100vw * (7 / 4));
-    padding: toRem(100) 6.25% toRem(24) 6.25%;
+    margin-bottom: toRem(64);
+    overflow: hidden;
 
-    background-image: image-set(url("/static/images/content/intro-bg-mb.webp") 1x, url("/static/images/content/intro-bg-mb_2x.webp") 2x, url("/static/images/content/intro-bg-mb_3x.webp") 3x);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: top center;
-
-    &--calc {
+    &__player {
         position: relative;
-        background-image: none;
-        background: linear-gradient(146.28deg, rgba(188, 255, 1, 0) 6.54%, #BCFF00 92.16%);
-        
-        .intro__title {
-            margin-bottom: toRem(40);
-        }
+        @include flex-setting(column, center, center);
+        width: 100%;
+        height: calc(100vw * (11.11 / 8));
+        margin-bottom: toRem(32);
+        overflow: hidden;
 
-        .intro__description {
-            font-size: toRem(14);
-            line-height: toRem(17);
-            color: $gray;
-
-            time {
-                display: inline-flex;
-                color: $black;
-                width: 100%;
-            }
-        }
-
-        .intro__link {
-            z-index: 1;
-            color: $black;
-            background-color: transparent;
-            border: toRem(1) solid $black;
-
-            &:active {
-                color: $white;
-                background-color: $black;
-            }
-        }
-
-        &::after {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            z-index: 0;
-            content: '';
-
+        &-video {
             width: 100%;
-            height: 30vh;
-            background: linear-gradient(175.15deg, rgba(188, 255, 1, 0) 3.41%, #BCFF00 95.59%);
+            height: 100%;
+            object-fit: cover;
         }
+
+        &-overlay {
+            position: absolute;
+            width: 100%;
+            height: calc(100vw * (11.11 / 8));
+            background-color: rgba(34, 34, 34, 0.5);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+
+    &__body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        height: calc(100vw * (11.11 / 8));
+        padding: toRem(128) 4.4444% toRem(40) 4.4444%;
     }
 
     &__title {
+        @include font-setting($primary-font, toRem(40), toRem(48), 400, $white);
+        text-align: left;
         margin-bottom: toRem(30);
-        @include font-setting($primary-font, toRem(32), toRem(35), 600, $black);
-        text-align: left;
-        letter-spacing: -0.02em;
-
-        span:first-child,
-        span:nth-child(3) {
-            border-bottom: toRem(1) solid $gray;
-        }
     }
 
-    &__description {
-        @include font-setting($primary-font, toRem(20), toRem(24), 500, $black);
-        text-align: left;
-    }
-
-    &__link {
-        @include flex-setting(column, center, center);
+    &__controls {
+        @include flex-setting(column, flex-start, flex-start);
         width: 100%;
-        margin-bottom: 0;
-        margin-top: auto;
-        padding: toRem(15) 0;
 
-        @include font-setting($primary-font, toRem(15), toRem(17), 500, $white);
-        text-transform: uppercase;
-        text-decoration: none;
-        border-radius: toRem(24);
-        background-color: $black;
-        transition: 0.2s $cubic;
-
-        &:active {
-            background-color: $green;
-            color: $black;
+        &-video {
+            position: relative;
+            
+            @include flex-setting(column, center, center);
+            @include font-setting($secondary-font, toRem(16), toRem(21), 400, $white);
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            padding-right: toRem(28);
+            margin-bottom: toRem(40);
             transition: 0.2s $cubic;
+
+            &::after {
+                position: absolute;
+                content: '';
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: toRem(20);
+                height: toRem(20);
+                background-image: url("data:image/svg+xml,%3Csvg width='20' height='21' viewBox='0 0 20 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_827_2175)'%3E%3Cpath d='M10 0.5C4.47768 0.5 0 4.97768 0 10.5C0 16.0223 4.47768 20.5 10 20.5C15.5223 20.5 20 16.0223 20 10.5C20 4.97768 15.5223 0.5 10 0.5ZM10 18.8036C5.41518 18.8036 1.69643 15.0848 1.69643 10.5C1.69643 5.91518 5.41518 2.19643 10 2.19643C14.5848 2.19643 18.3036 5.91518 18.3036 10.5C18.3036 15.0848 14.5848 18.8036 10 18.8036Z' fill='white'/%3E%3Cpath d='M14.6292 10.212L8.01981 5.41291C7.9668 5.37405 7.90405 5.35067 7.83853 5.34539C7.77302 5.3401 7.70733 5.35311 7.64877 5.38297C7.59022 5.41282 7.54111 5.45835 7.50691 5.51448C7.47271 5.57061 7.45477 5.63513 7.45508 5.70085V15.2991C7.45508 15.5915 7.78544 15.7567 8.01981 15.587L14.6292 10.7879C14.6748 10.755 14.712 10.7118 14.7376 10.6617C14.7633 10.6116 14.7766 10.5562 14.7766 10.5C14.7766 10.4437 14.7633 10.3883 14.7376 10.3382C14.712 10.2881 14.6748 10.2449 14.6292 10.212ZM8.87919 13.2031V7.79683L12.6002 10.5L8.87919 13.2031Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_827_2175'%3E%3Crect width='20' height='20' fill='white' transform='translate(0 0.5)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+                background-position: 50% 50%;
+                background-size: contain;
+                background-repeat: no-repeat;
+                transition: 0.2s $cubic;
+
+                &:active {
+                    color: $bordo;
+                    transition: 0.2s $cubic;
+                    &::after {
+                        background-image: url("data:image/svg+xml,%3Csvg width='20' height='21' viewBox='0 0 20 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_827_2175)'%3E%3Cpath d='M10 0.5C4.47768 0.5 0 4.97768 0 10.5C0 16.0223 4.47768 20.5 10 20.5C15.5223 20.5 20 16.0223 20 10.5C20 4.97768 15.5223 0.5 10 0.5ZM10 18.8036C5.41518 18.8036 1.69643 15.0848 1.69643 10.5C1.69643 5.91518 5.41518 2.19643 10 2.19643C14.5848 2.19643 18.3036 5.91518 18.3036 10.5C18.3036 15.0848 14.5848 18.8036 10 18.8036Z' fill='%23CA4748'/%3E%3Cpath d='M14.6292 10.212L8.01981 5.41291C7.9668 5.37405 7.90405 5.35067 7.83853 5.34539C7.77302 5.3401 7.70733 5.35311 7.64877 5.38297C7.59022 5.41282 7.54111 5.45835 7.50691 5.51448C7.47271 5.57061 7.45477 5.63513 7.45508 5.70085V15.2991C7.45508 15.5915 7.78544 15.7567 8.01981 15.587L14.6292 10.7879C14.6748 10.755 14.712 10.7118 14.7376 10.6617C14.7633 10.6116 14.7766 10.5562 14.7766 10.5C14.7766 10.4437 14.7633 10.3883 14.7376 10.3382C14.712 10.2881 14.6748 10.2449 14.6292 10.212ZM8.87919 13.2031V7.79683L12.6002 10.5L8.87919 13.2031Z' fill='%23CA4748'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_827_2175'%3E%3Crect width='20' height='20' fill='%23CA4748' transform='translate(0 0.5)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+                        transition: 0.2s $cubic;
+                    }
+                }
+            }
+        }
+
+        &-purchase {
+            @include flex-setting(column, center, center);
+            padding: toRem(14) toRem(59);
+            @include font-setting($secondary-font, toRem(16), toRem(21), 400, $white);
+            background-color: $bordo;
+            border: none;
+            border-radius: toRem(56);
+            transition: 0.2s $cubic;
+
+            &:active {
+                background-color: $ochra;
+                transition: 0.2s $cubic;
+            }
         }
     }
 
-    &__visual {
-        position: absolute;
-        bottom: 0;
-        left: 6.25%;
-        width: toRem(266);
-        height: toRem(288);
-        background-image: url('../images/content/rouble.png');
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: contain;
+    &__bottom {
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        padding: 0 4.4444%;
+    
+        &-description {
+            @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black);
+            text-align: left;
+            margin-bottom: toRem(20);
+        }
+    }
+    
+    &__price {
+        @include flex-setting(column, flex-start, flex-start);
+        width: auto;
+    
+        &-title {
+            @include font-setting($secondary-font, toRem(10), toRem(14), 500, $black-opacity);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: toRem(8);
+        }
+    
+        &-nr {
+            @include font-setting($primary-font, toRem(18), toRem(23), 400, $black);
+            margin-bottom: toRem(8);
+    
+            &--old {
+                margin-bottom: 0;
+                text-decoration: line-through;
+            }
+        }
     }
 }
 
 @include min-screen(768px) {
     .intro {
-        display: grid;
-        grid-template-columns: toRem(327) toRem(327);
-        justify-content: space-between;
-        align-items: center;
-        height: calc(100vw * (9 / 16));
-        padding: toRem(123) 2.6% toRem(50) 2.6%;
-        margin-bottom: toRem(50);
-        background-image: image-set(url("/static/images/content/intro-bg-lg.webp") 1x, url("/static/images/content/intro-bg-lg_2x.webp") 2x, url("/static/images/content/intro-bg-lg_3x.webp") 3x);
-        background-size: cover;
-
-        &--calc {
-            background-image: none;
-            background: linear-gradient(146.28deg, rgba(188, 255, 1, 0) 6.54%, #BCFF00 92.16%);
-            overflow: hidden;
-
-            .intro__title {
-                margin-bottom: toRem(80);
+        margin-bottom: toRem(80);
+    
+        &__player {
+            height: toRem(800);
+            margin-bottom: toRem(80);
+    
+            &-video {
+                object-position: center;
             }
     
-            .intro__link {
-                display: none;
+            &-overlay {
+                height: toRem(800);
             }
+        }
     
-            &::after {
-                display: none;
-            }
+        &__body {
+            height: toRem(800);
+            padding: toRem(316) 9.6866% toRem(80) 4.1667%;
         }
     
         &__title {
-            grid-row: 1 / 2;
-            grid-column: 1 / 3;
-            margin-bottom: toRem(95);
-            font-size: toRem(52);
-            line-height: toRem(57);
+            font-size: toRem(64);
+            line-height: toRem(77);
+            margin-bottom: 0;
         }
     
-        &__description {
-            grid-row: 2 / 3;
-            grid-column: 1 / 2;
-        }
-    
-        &__link {
-            grid-row: 2 / 3;
-            grid-column: 2 / 3;
+        &__controls {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
             width: auto;
-            padding: toRem(14) toRem(40);
-            font-size: toRem(14);
+            margin-top: auto;
+            margin-bottom: 0;
+
+            &-video {
+                padding: toRem(13) toRem(59) toRem(13) toRem(31);
+                margin-bottom: 0;
+                margin-right: toRem(50);
+                border: toRem(1) solid $white;
+                border-radius: toRem(56);
+    
+                &::after {
+                    right: toRem(31);
+                }
+
+                &:active {
+                    border-color: $bordo;
+                    color: $bordo;
+                    transition: 0.2s $cubic;
+
+                    &::after {
+                        background-image: url("data:image/svg+xml,%3Csvg width='20' height='21' viewBox='0 0 20 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_827_2175)'%3E%3Cpath d='M10 0.5C4.47768 0.5 0 4.97768 0 10.5C0 16.0223 4.47768 20.5 10 20.5C15.5223 20.5 20 16.0223 20 10.5C20 4.97768 15.5223 0.5 10 0.5ZM10 18.8036C5.41518 18.8036 1.69643 15.0848 1.69643 10.5C1.69643 5.91518 5.41518 2.19643 10 2.19643C14.5848 2.19643 18.3036 5.91518 18.3036 10.5C18.3036 15.0848 14.5848 18.8036 10 18.8036Z' fill='%23CA4748'/%3E%3Cpath d='M14.6292 10.212L8.01981 5.41291C7.9668 5.37405 7.90405 5.35067 7.83853 5.34539C7.77302 5.3401 7.70733 5.35311 7.64877 5.38297C7.59022 5.41282 7.54111 5.45835 7.50691 5.51448C7.47271 5.57061 7.45477 5.63513 7.45508 5.70085V15.2991C7.45508 15.5915 7.78544 15.7567 8.01981 15.587L14.6292 10.7879C14.6748 10.755 14.712 10.7118 14.7376 10.6617C14.7633 10.6116 14.7766 10.5562 14.7766 10.5C14.7766 10.4437 14.7633 10.3883 14.7376 10.3382C14.712 10.2881 14.6748 10.2449 14.6292 10.212ZM8.87919 13.2031V7.79683L12.6002 10.5L8.87919 13.2031Z' fill='%23CA4748'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_827_2175'%3E%3Crect width='20' height='20' fill='%23CA4748' transform='translate(0 0.5)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+                        transition: 0.2s $cubic;
+                    }
+                }
+            }
         }
- 
-        &__visual {
-            bottom: toRem(-24);
-            left: auto;
-            right: 2.6%;
+    
+        &__bottom {
+            flex-direction: row;
+            padding: 0 4.1667%;
+        
+            &-description {
+                width: 100%;
+                max-width: 38.6039%;
+                margin-right: toRem(80);
+                margin-bottom: 0;
+            }
         }
-    }    
+        
+        &__price {
+            &-nr {
+                font-size: toRem(28);
+                line-height: toRem(36);
+            }
+        }
+    }
 }
 
-@include min-screen(1024px) {
+@include min-screen(1440px) {
     .intro {
-        grid-template-columns: toRem(262) toRem(262);
-        max-height: toRem(520);
-        padding: toRem(210) 3.90625% toRem(50) 3.90625%;
-        margin-bottom: toRem(50);
-
-        &--calc {
-            padding-top: toRem(120);
+        --padding: calc(100% - 1440px);
+        padding-left: calc(var(--padding) / 2);
+        padding-right: calc(var(--padding) / 2);
+        margin-bottom: toRem(120);
+    
+        &__player {
             margin-bottom: 0;
-            background-image: none;
-            background: linear-gradient(146.28deg, rgba(188, 255, 1, 0) 6.54%, #BCFF00 92.16%);
-            
-            .intro__title {
-                max-width: toRem(420);
-            }
         }
     
-        &__description {
-            align-self: start;
-            letter-spacing: -0.017em;
+        &__body {
+            padding: toRem(303) calc((100% - 1360px) / 2) toRem(40) calc((100% - 1360px) / 2);
         }
     
-        &__link {
-            white-space: nowrap;
-
-            &:hover {
-                background-color: $green;
-                border-color: $green;
-                color: $black;
-                transition: 0.2s $cubic;
-            }
-        }
-
-        &__visual {
-            --width: calc(100% - 644px);
-            bottom: toRem(-18);
-            right: calc(var(--width) / 2);
-
-            width: toRem(348);
-            height: toRem(376);
-        }
-    }    
-}
-
-@include min-screen(1280px) {
-    .intro {
-        --width: calc(100% - 1182px);
-        max-height: toRem(650);
-        grid-template-columns: toRem(327) toRem(327);
-        padding: toRem(263) calc(var(--width) / 2) toRem(60) calc(var(--width) / 2);
-        margin-bottom: 0;
-
-        &--calc {
-            padding-top: toRem(150);
-            margin-bottom: 0;
-            
-            .intro__title {
-                max-width: toRem(525);
-                margin-bottom: toRem(100);
-            }
-
-            .intro__description {
-                font-size: toRem(18);
-                line-height: toRem(22);
-                letter-spacing: -0.01em;
-            }
-        }
-    
-
         &__title {
-            margin-bottom: toRem(120);
-            font-size: toRem(65);
-            line-height: toRem(72);
+            max-width: toRem(688);
+        }
+    
+        &__controls {
+            justify-content: space-between;
+            width: 100%;
 
-            span:last-of-type {
-                white-space: nowrap;
+            &-video {
+                &:hover {
+                    border-color: $bordo;
+                    color: $bordo;
+                    transition: 0.2s $cubic;
+
+                    &::after {
+                        background-image: url("data:image/svg+xml,%3Csvg width='20' height='21' viewBox='0 0 20 21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_827_2175)'%3E%3Cpath d='M10 0.5C4.47768 0.5 0 4.97768 0 10.5C0 16.0223 4.47768 20.5 10 20.5C15.5223 20.5 20 16.0223 20 10.5C20 4.97768 15.5223 0.5 10 0.5ZM10 18.8036C5.41518 18.8036 1.69643 15.0848 1.69643 10.5C1.69643 5.91518 5.41518 2.19643 10 2.19643C14.5848 2.19643 18.3036 5.91518 18.3036 10.5C18.3036 15.0848 14.5848 18.8036 10 18.8036Z' fill='%23CA4748'/%3E%3Cpath d='M14.6292 10.212L8.01981 5.41291C7.9668 5.37405 7.90405 5.35067 7.83853 5.34539C7.77302 5.3401 7.70733 5.35311 7.64877 5.38297C7.59022 5.41282 7.54111 5.45835 7.50691 5.51448C7.47271 5.57061 7.45477 5.63513 7.45508 5.70085V15.2991C7.45508 15.5915 7.78544 15.7567 8.01981 15.587L14.6292 10.7879C14.6748 10.755 14.712 10.7118 14.7376 10.6617C14.7633 10.6116 14.7766 10.5562 14.7766 10.5C14.7766 10.4437 14.7633 10.3883 14.7376 10.3382C14.712 10.2881 14.6748 10.2449 14.6292 10.212ZM8.87919 13.2031V7.79683L12.6002 10.5L8.87919 13.2031Z' fill='%23CA4748'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_827_2175'%3E%3Crect width='20' height='20' fill='%23CA4748' transform='translate(0 0.5)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+                        transition: 0.2s $cubic;
+                    }
+                }
+            }
+
+            &-purchase {
+                &:hover {
+                    background-color: $ochra;
+                    transition: 0.2s $cubic;
+                }
             }
         }
     
-        &__description {
-            font-size: toRem(25);
-            line-height: toRem(30);
+        &__bottom {
+            position: absolute;
+            padding: 0;
+            left: calc((100% - 1360px) / 2);
+            bottom: toRem(176);
+            align-items: center;
+        
+            &-description {
+                color: $white;
+                font-size: toRem(28);
+                line-height: toRem(39);
+                width: 100%;
+                max-width: toRem(398);
+                margin-right: toRem(158);
+            }
         }
-    
-        &__link {
-            font-size: toRem(17);
-            line-height: toRem(20);
-            letter-spacing: 0.01em;
+        
+        &__price {
+            margin-top: toRem(10);
+            &-title {
+                color: $white;
+            }
+            &-nr {
+                color: $white;
+            }
         }
-
-        &__visual {
-            --width: calc(100% - 804px);
-            bottom: toRem(-22);
-
-            width: toRem(434);
-            height: toRem(470);
-        }
-    }    
+    }
 }

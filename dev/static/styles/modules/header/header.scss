@@ -1,114 +1,101 @@
 .header {
-    position: absolute;
+    position: sticky;
     top: 0;
-    left: 0;
-    z-index: 2;
-    
     @include flex-setting(row, space-between, center);
     width: 100%;
-    padding: toRem(14) 6.25%;
+    padding: toRem(16) 4.4444%;
+    background-color: $white;
+    box-shadow: 0px 8px 29px rgba(0, 0, 0, 0.06);
+
+    z-index: 99;
+
+    &.is-active {
+        .header__nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 0.2s $cubic;
+            z-index: 2;
+            overflow-y: scroll;
+        }
+
+        .header__toggle {
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23222222'/%3E%3C/svg%3E");
+            transition: 0.2s $cubic;
+
+            &:active {
+                background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23ffffff'/%3E%3C/svg%3E");
+                transition: 0.2s $cubic;
+            }
+        }
+    }
 
     &__logo {
-        @include flex-setting(column, center, center);
-        width: toRem(74);
-        height: toRem(17);
+        width: toRem(100.31);
+        height: toRem(17.66);
 
         &-link {
-            @include flex-setting(column, center, center);
-            width: 100%;
-            height: 100%;
-            color: $black;
+            display: inline-flex;
+            width: inherit;
+            height: inherit;
         }
 
         &-image {
             width: 100%;
-            height: 100%;
-            fill: currentColor;
+            height: auto;
+            object-fit: contain;
         }
+    }
+
+    &__nav {
+        position: absolute;
+        left: -150vw;
+        top: 0;
+        transition: 0.2s $cubic;
+        z-index: 2;
     }
 
     &__toggle {
         @include flex-setting(column, center, center);
-
-        width: toRem(38.5);
-        height: toRem(38.5);
-        padding: 0;
-
-        background-color: transparent;
+        width: toRem(56);
+        height: toRem(56);
         border: none;
+        border-radius: 100%;
+        background-color: $darkwhite;
+        background-image: url("data:image/svg+xml,%3Csvg width='14' height='12' viewBox='0 0 14 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1H13M1 6H13M1 11H13' stroke='%23140F14' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: toRem(16) toRem(16);
+        z-index: 2;
+        transition: 0.2s $cubic;
 
-        &-opener {
-            width: 100%;
-            height: 100%;
-            fill: $green;
-            object-fit: contain;
-        }
-
-        &-closer {
-            display: none;
-            width: toRem(24);
-            height: toRem(24);
-            fill: $white;
-            object-fit: contain;
-        }
-    }
-
-    &.is-active {
-        .header__logo {
-            z-index: 3;
-
-            &-link {
-                color: $white;
-            }
-        }
-
-        .header__nav {
-            left: 0;
+        &:active {
             transition: 0.2s $cubic;
-        }
-
-        .header__toggle {
-            z-index: 3;
-
-            &-opener {
-                display: none;
-            }
-
-            &-closer {
-                display: block;
-            }
+            background-color: $bordo;
+            background-image: url("data:image/svg+xml,%3Csvg width='14' height='12' viewBox='0 0 14 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1H13M1 6H13M1 11H13' stroke='%23ffffff' stroke-linecap='round'/%3E%3C/svg%3E%0A");
         }
     }
 }
 
 @include min-screen(768px) {
     .header {
-        padding: toRem(20) 2.6%;
+        padding-left: 4.1667%;
+        padding-right: 4.1667%;
     
         &__logo {
-            width: toRem(85.6);
-            height: toRem(19.57);
+            width: toRem(138.9);
+            height: toRem(24.45);
         }
     }
 }
 
-@include min-screen(1024px) {
+@include min-screen(1440px) {
     .header {
-        display: grid;
-        grid-template-columns: toRem(85.6) 1fr;
-        grid-column-gap: 10.26%;
-        padding: toRem(32) 3.90625%;
+        --padding: calc(100% - 1360px);
+        padding: toRem(24) calc(var(--padding) / 2);
 
         &__toggle {
             display: none;
         }
-    }
-}
-
-@include min-screen(1280px) {
-    .header {
-        grid-column-gap: 10.39%;
-        --width: calc(100% - 1182px);
-        padding: toRem(40) calc(var(--width) / 2);
     }
 }

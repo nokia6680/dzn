@@ -1,356 +1,164 @@
 .nav {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: -100vw;
-
-    @include flex-setting(column, flex-start, flex-end);
-    width: 100vw;
+    @include flex-setting(column, flex-start, flex-start);
+    width: 100%;
     height: calc(var(--vh, 1vh) * 100);
-    padding: toRem(66.5) toRem(20) toRem(32) toRem(20);
+    padding: toRem(100) toRem(77) toRem(30) toRem(77);
+    background-color: $white;
 
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(27px);
+    &__call {
+        margin-bottom: toRem(30);
+        @include font-setting($primary-font, toRem(28), toRem(36), 400, $black);
+        text-decoration: none;
+        transition: 0.2s $cubic;
 
-    transition: 0.2s $cubic;
+        &:active {
+            color: $bordo;
+            transition: 0.2s $cubic;
+        }
+    }
 
     &__list {
-        @include flex-setting(column, flex-start, flex-end);
+        @include flex-setting(column, flex-start, flex-start);
         width: 100%;
-        gap: toRem(24);
-        padding-top: toRem(44);
-
-        &.links-active {
-            .nav__item:not(:last-child) {
-                opacity: 0;
-                pointer-events: none;
-                transition: 0.2s $cubic;
-            }
-
-            .nav__item--links {
-                order: -1;
-                transition: 0.2s $cubic;
-
-                .nav__link {
-                    @include flex-setting(row, flex-end, flex-end);
-                    margin-bottom: 17.85vh;
-
-                    &-arr {
-                        transform: rotate(180deg);
-                        line-height: toRem(20);
-                    }
-                }
-            }
-
-            .nav__inner {
-                display: flex;
-            }
-
-            & + .nav__contacts {
-                display: none;
-            }
-        }
+        gap: toRem(20);
+        margin-bottom: toRem(50);
     }
 
     &__item {
-        display: inline-flex;
-        width: auto;
-        @include gapFallbackV(24px);
-
-        opacity: 1;
-        pointer-events: all;
-        transition: 0.2s $cubic;
-
-        &--links {
-            @include flex-setting(column, flex-start, flex-end);
-        }
+        @include flex-setting(row, flex-start, center);
+        width: 100%;
+        @include gapFallbackV(20px);
     }
 
     &__link {
-        display: inline-flex;
-        width: auto;
-        padding-bottom: toRem(3);
-        @include font-setting($primary-font, toRem(20), toRem(24), 500, $white);
-        letter-spacing: -0.01em;
+        @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black);
         text-decoration: none;
-        text-transform: lowercase;
-        border-bottom: toRem(1) solid $thingray;
         transition: 0.2s $cubic;
 
-        &-arr {
-            margin-left: toRem(8);
-        }
-
         &:active {
-            color: $green;
-            border-color: $green;
+            color: $bordo;
             transition: 0.2s $cubic;
         }
     }
 
-    &__inner {
-        @include flex-setting(column, flex-start, flex-end);
-        display: none;
-        gap: toRem(24);
+    &__purchase {
+        @include flex-setting(column, center, center);
+        @include font-setting($secondary-font, toRem(16), toRem(22), 400, $white);
         width: 100%;
-        margin-bottom: 0;
-        margin-top: auto;
+        padding: toRem(17) 0;
+        margin-bottom: toRem(50);
+        background-color: $bordo;
+        border: none;
+        border-radius: toRem(56);
+        transition: 0.2s $cubic;
 
-        &-item {
-            display: inline-flex;
-            @include gapFallbackV(24px);
-            width: auto;
-        }
-
-        &-link {
-            display: inline-flex;
-            width: auto;
-            padding-bottom: toRem(3);
-            @include font-setting($primary-font, toRem(16), toRem(19), 500, $white);
-            letter-spacing: -0.01em;
-            text-decoration: none;
-            text-transform: lowercase;
-            border-bottom: toRem(1) solid $thingray;
+        &:active {
+            background-color: $ochra;
             transition: 0.2s $cubic;
-
-            &:active {
-                color: $green;
-                border-color: $green;
-                transition: 0.2s $cubic;
-            }
         }
     }
 
     &__contacts {
-        @include flex-setting(row, flex-end, center);
-        gap: toRem(14) toRem(20);
-        flex-wrap: wrap;
-        width: auto;
-        max-width: 71.43%;
-        margin-bottom: 0;
-        margin-top: auto;
+        position: relative;
+        @include flex-setting(row, center, center);
+        gap: toRem(86);
+        width: 100%;
+        padding-top: toRem(30);
 
         &-link {
-            display: inline-flex;
-            width: auto;
-            @include font-setting($primary-font, toRem(20), toRem(24), 500, $white);
-            letter-spacing: -0.01em;
+            @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black);
             text-decoration: none;
-            text-transform: lowercase;
-
-            border-bottom: toRem(1) solid $thingray;
             transition: 0.2s $cubic;
-            justify-self: end;
 
             &:active {
-                color: $green;
-                border-color: $green;
+                color: $bordo;
                 transition: 0.2s $cubic;
-            }
-
-            &:first-child {
-                grid-column: 1 / 3;
-                grid-row: 1 / 2;
-                justify-self: end;
-            }
-
-            &:nth-child(2) {
-                grid-column: 1 / 2;
-                grid-row: 2 / 3;
-            }
-
-            &:last-child {
-                grid-column: 2 / 3;
-                grid-row: 2 / 3;
             }
         }
 
-        &--desktop {
-            display: none;
+        &::before {
+            position: absolute;
+            content: '';
+
+            width: 100vw;
+            height: toRem(1);
+            background-color: $darkwhite;
+            left: toRem(-77);
+            top: 0;
         }
     }
 }
 
 @include min-screen(768px) {
     .nav {
-        padding-left: 2.6%;
-        padding-right: 2.6%;
-    }    
+        align-items: center;
+
+        &__list {
+            align-items: center;
+        }
+
+        &__item {
+            justify-content: center;
+        }
+
+        &__purchase {
+            width: auto;
+            padding-left: toRem(52);
+            padding-right: toRem(52);
+        }
+    }
 }
 
-@include min-screen(1024px) {
+@include min-screen(1440px) {
     .nav {
         position: relative;
-        z-index: 2;
         top: auto;
         left: auto;
-    
-        display: grid;
-        grid-template-columns: 1fr toRem(205);
-        grid-column-gap: 0;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
+        width: auto;
         height: auto;
+        flex-direction: row;
+        justify-content: flex-end;
         padding: 0;
-    
-        background-color: transparent;
-        backdrop-filter: none;
-        transition: none;
-    
+
+        &__call {
+            display: none;
+        }
+
         &__list {
-            grid-column: 1 / 2;
             flex-direction: row;
             justify-content: flex-start;
-            align-items: center;
-            gap: toRem(32);
+            align-self: center;
+            gap: toRem(50);
             width: auto;
-            padding-top: 0;
+            margin-bottom: 0;
+            margin-right: toRem(188);
         }
-    
+
         &__item {
-            @include gapFallback(32px);
-    
-            &--links {
-                display: none;
-            }
+            width: auto;
+            justify-content: center;
         }
-    
+
         &__link {
-            font-size: toRem(13);
-            line-height: toRem(16);
-            color: $black;
             white-space: nowrap;
-            border-color: $medgray;
-    
+
             &:hover {
-                border-color: $green;
+                color: $bordo;
                 transition: 0.2s $cubic;
             }
+        }
 
-            &:active {
-                color: $black;
+        &__purchase {
+            margin-bottom: 0;
+
+            &:hover {
+                background-color: $ochra;
+                transition: 0.2s $cubic;
             }
         }
-    
-        &__inner {
-           display: none;
-        }
-    
+
         &__contacts {
-            grid-column: 2 / 3;
-
-            &--mobile {
-                display: none;
-            }
-    
-            &-link {
-                display: inline-flex;
-                width: auto;
-                font-size: toRem(9);
-                line-height: toRem(11);
-                letter-spacing: -0.01em;
-                color: $black;
-                text-decoration-style: dashed;
-                text-decoration-line: underline;
-                text-decoration-color: $thingray;
-                text-underline-offset: toRem(2);
-                white-space: nowrap;
-                border-bottom: none;
-
-                &:hover {
-                    text-decoration-color: $green;
-                    transition: 0.2s $cubic;
-                }
-
-                &:active {
-                    color: $black;
-                }
-    
-                &:first-child {
-                    grid-column: 1 / 2;
-                    grid-row: 1 / 2;
-                    justify-self: start;
-                    align-self: start;
-                }
-    
-                &:nth-child(2) {
-                    grid-column: 1 / 2;
-                    grid-row: 2 / 3;
-
-                    justify-self: start;
-                    align-self: start;
-                }
-            }
-    
-            &--desktop {
-                display: grid;
-                grid-template-columns: 1fr toRem(110);
-                grid-column-gap: 0;
-                grid-row-gap: 0;
-                justify-content: space-between;
-                align-items: center;
-                max-width: 100%;
-            }
-
-            &-btn {
-                grid-column: 2 / 3;
-                grid-row: 1 / 3;
-                @include flex-setting(column, center, center);
-                width: 100%;
-                padding: toRem(9) toRem(11);
-                @include font-setting($primary-font, toRem(9), toRem(11), 500, $black);
-                letter-spacing: 0.01em;
-                text-transform: uppercase;
-                text-decoration: none;
-                white-space: nowrap;
-                border: toRem(1) solid $black;
-                border-radius: toRem(24);
-                background-color: transparent;
-                transition: 0.2s $cubic;
-
-                &:hover {
-                    background-color: $white;
-                    border-color: $white;
-                    transition: 0.2s $cubic;
-                }
-            }
+            display: none;
         }
-    } 
-}
-
-@include min-screen(1280px) {
-    .nav {
-        grid-template-columns: 1fr toRem(256);
-    
-        &__list {
-            gap: toRem(40);
-        }
-    
-        &__item {
-            @include gapFallback(40px);
-        }
-    
-        &__link {
-            font-size: toRem(16);
-            line-height: toRem(19);
-        }
-    
-        &__contacts {  
-            &-link {
-                font-size: toRem(12);
-                line-height: toRem(14);
-            }
-    
-            &--desktop {
-                grid-template-columns: 1fr toRem(137);
-            }
-
-            &-btn {
-                padding: toRem(11) toRem(14);
-                font-size: toRem(11);
-                line-height: toRem(13);
-            }
-        }
-    } 
+    }
 }

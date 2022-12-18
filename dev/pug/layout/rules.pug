@@ -1,0 +1,78 @@
+include ../helpers/mixins
+block variables
+
+doctype html
+html(lang="ru-RU")
+    head
+        //test ver only
+        meta(name="robots" content="noindex")
+        //end of test ver only
+        meta(charset="utf-8")
+        title #{title}
+        <!--[if IE]>
+        meta(http-equiv='X-UA-Compatible', content="IE = edge")
+        <![endif]-->
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        link(rel="stylesheet" type='text/css' href="static/css/styles.css")
+    body.body
+        include ../modules/header/header
+
+        main.main
+            ul.breadcrumbs
+                +breadcrumbsItem('Профессии', 'index.html')
+                +breadcrumbsItem('Условия покупки')
+            section.rules
+                h1.rules__title Условия покупки
+
+                .rules__block
+                    h2.rules__subtitle Политика возврата товара или услуги
+                    p.rules__description Срок возврата товара надлежащего качества составляет 30 дней с момента получения товара.
+                    p.rules__description Возврат переведённых средств, производится на ваш банковский счёт в течение 5-30 рабочих дней (срок зависит от банка, который выдал вашу банковскую карту).
+                
+                .rules__block
+                    h2.rules__subtitle Условия доставки товара
+                    p.rules__description 
+                        | Доставка осуществляется в регионы, согласно 
+                        a(href="" target="_blank") тарифам
+                        | , если вашего города нет в списке, обратитесь за индивидуальным расчетом, написав письмо на почту 
+                        a(href="mailto:winestage@simple.ru" target="_blank") winestage@simple.ru
+                
+                .rules__block
+                    h2.rules__subtitle Способы оплаты
+                    p.rules__description Доставка осуществляется в регионы, согласно тарифам, если вашего города нет в списке, обратитесь за индивидуальным расчетом, написав письмо на почту
+                
+                .rules__block
+                    h2.rules__subtitle Банковской картой
+                    p.rules__description Для оплаты товара с помощью банковской карты на соответствующей странице необходимо нажать кнопку Оплата заказа банковской картой. Оплата происходит через ПАО СБЕРБАНК с использованием банковских карт следующих платёжных систем:
+
+                    ul.rules__list
+                        li.rules__list-item
+                            span МИР
+                        li.rules__list-item
+                            span VISA International
+                        li.rules__list-item
+                            span Mastercard Worldwide
+                        li.rules__list-item
+                            span JCB
+
+                    ul.rules__logos
+                        li.rules__logos-item
+                            img(src="static/images/content/mir.svg" width="" height="" alt="")
+                        li.rules__logos-item
+                            img(src="static/images/content/visa.svg" width="" height="" alt="")
+                        li.rules__logos-item
+                            img(src="static/images/content/mc.svg" width="" height="" alt="")
+                        li.rules__logos-item
+                            img(src="static/images/content/jcb.svg" width="" height="" alt="")
+                .rules__block
+                    h2.rules__subtitle Описание процесса передачи данных
+                    p.rules__description Для оплаты (ввода реквизитов Вашей карты) Вы будете перенаправлены на платёжный шлюз ПАО СБЕРБАНК. Соединение с платёжным шлюзом и передача информации о существляется в защищённом режиме с использованием протокола шифрования SSL.
+                    p.rules__description В случае если Ваш банк поддерживает технологию безопасного проведения интернет-платежей Verified By Visa, MasterCard SecureCode, MIR Accept, J-Secure для проведения платежа также может потребоваться ввод специального пароля.
+                    p.rules__description Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается ПАО СБЕРБАНК. Введённая информация не будет предоставлена третьим лицам за исключением случаев, предусмотренных законодательством РФ. Проведение платежей по банковским картам осуществляется в строгом соответствии с требованиями платёжных систем МИР, Visa Int., MasterCard Europe Sprl, JCB.
+
+        include ../modules/footer/footer
+        include ../modules/blocks/popup-order
+        script(src="static/js/libs.js")
+        script(src="static/js/main.js")
+        script(src="static/js/placeholder.js")
+        block script

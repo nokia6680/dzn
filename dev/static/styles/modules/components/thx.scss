@@ -1,0 +1,97 @@
+.thx {
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include flex-setting(column, center, center);
+    width: 100vw;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: rgba(34, 34, 34, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+
+    display: none;
+
+    &.is-active {
+        display: flex;
+    }
+
+    &__wrapper {
+        position: relative;
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        max-width: toRem(360);
+        height: auto;
+        padding: toRem(70) toRem(40);
+        background-color: $white;
+    }
+
+    &__closer {
+        position: absolute;
+        top: toRem(16);
+        right: toRem(16);
+        @include flex-setting(column, center, center);
+        width: toRem(56);
+        height: toRem(56);
+        border: none;
+        border-radius: 100%;
+        background-color: $darkwhite;
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23222222'/%3E%3C/svg%3E");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: toRem(16) toRem(16);
+        z-index: 2;
+
+        &:active {
+            background-color: $bordo;
+            transition: 0.2s $cubic;
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23ffffff'/%3E%3C/svg%3E");
+        }
+    }
+
+    &__title {
+        @include font-setting($primary-font, toRem(30), toRem(39), 400, $black);
+        text-align: left;
+        margin-bottom: toRem(24);
+    }
+
+    &__description {
+        @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black);
+        text-align: left;
+    }
+}
+
+@include min-screen(768px) {
+    .thx {
+        &__wrapper {
+            max-width: toRem(768);
+            padding: toRem(70) toRem(252) toRem(70) toRem(46);
+        }
+    
+        &__closer {
+            top: toRem(32);
+            right: toRem(32);
+        }
+    
+        &__title {
+            font-size: toRem(40);
+            line-height: toRem(52);
+        }
+    
+        &__description {
+            font-size: toRem(16);
+            line-height: toRem(22);
+        }
+    }
+}
+
+@include min-screen(1440px) {
+    .thx {
+        &__closer {
+            &:hover {
+                background-color: $bordo;
+                transition: 0.2s $cubic;
+                background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23ffffff'/%3E%3C/svg%3E");
+            }
+        }
+    }
+}

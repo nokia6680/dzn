@@ -1,0 +1,256 @@
+.popup-teacher {
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include flex-setting(column, center, center);
+    width: 100vw;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: $white;
+    overflow-y: scroll;
+
+    z-index: 999;
+
+    display: none;
+
+    &.is-active {
+        display: flex;
+    }
+
+    &__wrapper {
+        position: relative;
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        padding-bottom: toRem(24);
+        overflow-x: hidden;
+    }
+
+    &__closer {
+        position: absolute;
+        top: toRem(16);
+        right: 4.4444%;
+        @include flex-setting(column, center, center);
+        width: toRem(56);
+        height: toRem(56);
+        border: none;
+        border-radius: 100%;
+        background-color: $darkwhite;
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23222222'/%3E%3C/svg%3E");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: toRem(16) toRem(16);
+        z-index: 2;
+
+        &:active {
+            background-color: $bordo;
+            transition: 0.2s $cubic;
+            background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23ffffff'/%3E%3C/svg%3E");
+        }
+    }
+
+    &__visual {
+        @include flex-setting(column, center, center);
+
+        width: 100%;
+        height: calc(100vw * (17.5824 / 16));
+    }
+
+    &__frame {
+        @include flex-setting(column, center, center);
+        width: 100%;
+        height: calc(100vw * (17.5824 / 16));
+        margin-bottom: toRem(24);
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__bio {
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        max-width: 80%;
+        padding: 0 4.4444%;
+        margin-bottom: toRem(32);
+
+        &-name {
+            @include font-setting($primary-font, toRem(40), toRem(48), 400, $black);
+            text-align: left;
+            margin-bottom: toRem(8);
+        }
+
+        &-position {
+            @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black-opacity);
+            text-align: left;
+        }
+    }
+
+    &__info {
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        padding: 0 4.4444%;
+        
+        &-about {
+            @include font-setting($primary-font, toRem(16), toRem(22), 400, $bordo);
+            text-align: left;
+            margin-bottom: toRem(24);
+        }
+
+        &-description {
+            @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black);
+            text-align: left;
+        }
+    }
+}
+
+@include min-screen(768px) {
+    .popup-teacher {
+        background-color: $black-opacity;
+        justify-content: center;
+        backdrop-filter: blur(5px);
+
+        &__wrapper {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content: start;
+            align-items: start;
+            grid-row-gap: toRem(50);
+            height: auto;
+            padding: 0;
+            padding-bottom: toRem(50);
+            max-width: toRem(768);
+            background-color: $white;
+
+            &::after {
+                position: absolute;
+                content: '';
+                top: 0;
+                right: 0;
+                background-image: url("../images/content/bio-bg-lg.png");
+                width: toRem(384);
+                height: toRem(420);
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+        }
+    
+        &__closer {
+            top: toRem(24);
+            right: toRem(24);
+            background-color: $white;
+            z-index: 3;
+        }
+    
+        &__visual {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            height: toRem(420);
+        }
+    
+        &__frame {
+            height: toRem(420);
+            margin-bottom: 0;
+        }
+    
+        &__bio {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            padding: 0 toRem(24);
+            margin-bottom: 0;
+            z-index: 2;
+    
+            &-name {
+                font-size: toRem(64);
+                line-height: toRem(77);
+            }
+    
+            &-position {
+                font-size: toRem(18);
+            }
+        }
+    
+        &__info {
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+            padding: 0 toRem(24) 0 toRem(56);
+            z-index: 2;
+            
+            &-about {
+                font-size: toRem(20);
+                line-height: toRem(28);
+                max-width: toRem(460);
+            }
+    
+            &-description {
+                font-size: toRem(16);
+                line-height: toRem(22);
+            }
+        }
+    }
+}
+
+@include min-screen(1440px) {
+    .popup-teacher {
+        &__wrapper {
+            grid-template-columns: toRem(728) toRem(712);
+            grid-template-rows: toRem(400) toRem(400);
+            grid-row-gap: 0;
+            padding: 0;
+            max-width: toRem(1440);
+
+            &::after {
+                width: toRem(710);
+                height: toRem(800);
+            }
+        }
+    
+        &__closer {
+            top: toRem(40);
+            right: toRem(40);
+
+            &:hover {
+                background-color: $bordo;
+                transition: 0.2s $cubic;
+                background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.00025 1L15 15M14.9998 1L1 15' stroke='%23ffffff'/%3E%3C/svg%3E");
+            }
+        }
+    
+        &__visual {
+            grid-row: 1 / 3;
+            height: toRem(800);
+        }
+    
+        &__frame {
+            height: toRem(800);
+        }
+    
+        &__bio {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            padding: toRem(120) toRem(110) 0 toRem(110);
+            justify-content: flex-start;
+        }
+    
+        &__info {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            height: 100%;
+            justify-content: flex-end;
+            padding: 0 toRem(110) toRem(90) toRem(110);
+            z-index: 2;
+            
+            &-about {
+                margin-bottom: toRem(32);
+            }
+        }
+    }
+}
