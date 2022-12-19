@@ -35,13 +35,13 @@
 
         &:not(:first-of-type) {
             .faq__name {
-                padding: toRem(24) 0;
+                padding: toRem(30) 0;
             }
         }
 
         &:first-of-type {
             .faq__name {
-                padding-bottom: toRem(24);
+                padding-bottom: toRem(30);
 
                 &-opener {
                     top: 0;
@@ -134,6 +134,10 @@
         --padding: calc(100% - 1360px);
         padding: 0 calc(var(--padding) / 2);
         margin-bottom: toRem(120);
+        
+        &__title {
+            margin-bottom: toRem(25);
+        }
 
         &__item {
             &:not(:first-of-type) {
@@ -145,6 +149,11 @@
             &:first-of-type {
                 .faq__name {
                     padding-bottom: toRem(35);
+                    padding-top: toRem(35);
+                    &-opener {
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
                 }
             }
         }

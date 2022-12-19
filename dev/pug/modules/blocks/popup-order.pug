@@ -7,42 +7,42 @@
 
         form(name="order-form" method="" action="").popup-order__form.form
             ul.form__list
-                li(oninput="this.className = 'form__item'").form__item
+                li.form__item
                     .form__item-wrap.form-line
                         label(for="order-name").form__label.js-label
-                            input(type="text" name="order-name" id="order-name" placeholder="Имя*" oninput="this.className = 'form__input'" required).form__input.js-input
-                        span.form__error
-                li(oninput="this.className = 'form__item'").form__item
+                            input(type="text" name="order-name" id="order-name" placeholder="Имя*" required onkeydown="validationName()").form__input.js-name-input.js-input
+                        span.form__error.form__error--name.hidden
+                li.form__item
                     .form__item-wrap.form-line
                         label(for="order-tel").form__label.js-label
-                            input(type="tel" name="order-tel" id="order-tel" placeholder="Телефон" oninput="this.className = 'form__input js-phone-input'" required).form__input.js-phone-input.js-input
-                        span.form__error
-                li(oninput="this.className = 'form__item'").form__item
+                            input(type="tel" name="order-tel" id="order-tel" placeholder="Телефон" onkeydown="validationTel()").form__input.js-phone-input.js-input
+                        span.form__error.form__error--tel.hidden
+                li.form__item
                     .form__item-wrap.form-line
                         label(for="order-mail").form__label.js-label
-                            input(type="email" name="order-mail" id="order-mail" placeholder="E-mail*" oninput="this.className = 'form__input'" required).form__input.js-input
-                        span.form__error
+                            input(type="email" name="order-mail" id="order-mail" placeholder="E-mail*" required onkeydown="validationMail()").form__input.js-mail-input.js-input
+                        span.form__error.form__error--mail.hidden
             .form__item
                 .form__item-wrap.form-line.form__item-wrap--checkbox
                     input(type="checkbox" name="order-gift" id="order-gift" value="order-gift").form__checkbox
                     label(for="order-gift").form__checkbox-label Оформить сертификат в подарок
             p.form__description  Пожалуйста, укажите контактные данные получателя
-            ul.form__list
-                li(oninput="this.className = 'form__item'").form__item
+            ul.form__list.form__list--gift
+                li.form__item
                     .form__item-wrap.form-line
                         label(for="gift-name").form__label.js-label
-                            input(type="text" name="gift-name" id="gift-name" placeholder="Имя" oninput="this.className = 'form__input'" required).form__input.js-input
-                        span.form__error
-                li(oninput="this.className = 'form__item'").form__item
+                            input(type="text" name="gift-name" id="gift-name" placeholder="Имя" onkeydown="validationName()").form__input.js-name-input.js-input
+                        span.form__error.form__error--name.hidden
+                li.form__item
                     .form__item-wrap.form-line
                         label(for="gift-tel").form__label.js-label
-                            input(type="tel" name="gift-tel" id="gift-tel" placeholder="Телефон" oninput="this.className = 'form__input js-phone-input'" required).form__input.js-phone-input.js-input
-                        span.form__error
-                li(oninput="this.className = 'form__item'").form__item
+                            input(type="tel" name="gift-tel" id="gift-tel" placeholder="Телефон" onkeydown="validationTel()").form__input.js-phone-input.js-input
+                        span.form__error.form__error--tel.hidden
+                li.form__item
                     .form__item-wrap.form-line
                         label(for="gift-mail").form__label.js-label
-                            input(type="email" name="gift-mail" id="gift-mail" placeholder="E-mail" oninput="this.className = 'form__input'" required).form__input.js-input
-                        span.form__error
+                            input(type="email" name="gift-mail" id="gift-mail" placeholder="E-mail" onkeydown="validationMail()").form__input.js-mail-input.js-input
+                        span.form__error.form__error--mail.hidden
             button(type="submit").form__submit 
                 span.form__submit-text Отправить
                 spam.form__submit-btn 

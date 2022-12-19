@@ -21,8 +21,8 @@ footer.footer
         form(method="" action="").footer__subscribe-form
             .footer__subscribe-item
                 label(for="subscribe-email").footer__subscribe-label.js-label
-                    input(type="email" name="subscribe-email" id="subscribe-email" placeholder="E-mail").footer__subscribe-input.js-input
-                span.footer__subscribe-error
+                    input(type="email" name="subscribe-email" id="subscribe-email" placeholder="E-mail" required onkeydown="validationMailSubscribe()").footer__subscribe-input.js-mail-input.js-input
+                span.footer__subscribe-error.hidden
             button(type="submit").footer__subscribe-submit
                 svg.footer__subscribe-image
                     use(xlink:href="static/images/sprite/symbol/sprite.svg#lo")

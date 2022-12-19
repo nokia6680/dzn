@@ -92,8 +92,9 @@
         margin-bottom: toRem(48);
 
         &-item {
-            @include flex-setting(row, flex-start, center);
+            @include flex-setting(column, flex-start, flex-start);
             width: 100%;
+            margin-right: toRem(16);
         }
 
         // Стилизация штатного плейсхолдера
@@ -181,7 +182,7 @@
         }
 
         &-form {
-            @include flex-setting(row, space-between, flex-end);
+            @include flex-setting(row, space-between, center);
             width: 100%;
         }
 
@@ -199,28 +200,17 @@
                 transition: 0.2s $cubic;
             }
 
-            &.error {
+            &.invalid {
+                color: $red;
                 border-color: $red;
                 transition: 0.2s linear;
-            }
-        }
 
-        &__error {
-            @include font-setting($secondary-font, toRem(12), toRem(17), 400, $red);
-    
-            align-self: flex-start;
-            display: none;
-    
-            &.single {
-                display: none;
-                bottom: -1rem;
-                left: 0;
-    
-                position: absolute;
-                white-space: nowrap;
-    
-                &.active {
-                    display: inline-flex;
+                & ~ .form__subscribe-error {
+                    color: $red;
+                }
+
+                & ~ .placeholder {
+                    color: $red !important;
                 }
             }
         }
@@ -229,19 +219,9 @@
             @include font-setting($secondary-font, toRem(12), toRem(17), 400, $red);
     
             align-self: flex-start;
-            display: none;
     
-            &.single {
+            &.hidden {
                 display: none;
-                bottom: -1rem;
-                left: 0;
-    
-                position: absolute;
-                white-space: nowrap;
-    
-                &.active {
-                    display: inline-flex;
-                }
             }
         }
 

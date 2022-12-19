@@ -40,3 +40,13 @@ fastCloser.onclick = function() {
     fastPopup.classList.remove('is-active');
     body.classList.remove('no-scroll');
 };
+
+let giftRadio = document.querySelectorAll('input[name="order-gift"]');
+let giftText = document.querySelector('.form__description');
+let giftList = document.querySelector('.form__list--gift');
+for (const i of giftRadio) {
+    i.onchange = () => {
+        giftText.classList.toggle('active');
+        giftList.classList.toggle('active');
+    }
+}

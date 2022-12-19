@@ -44,13 +44,13 @@
 
         &:not(:first-of-type) {
             .program__name {
-                padding: toRem(24) 0;
+                padding: toRem(30) 0;
             }
         }
 
         &:first-of-type {
             .program__name {
-                padding-bottom: toRem(24);
+                padding-bottom: toRem(30);
 
                 &-opener {
                     top: 0;
