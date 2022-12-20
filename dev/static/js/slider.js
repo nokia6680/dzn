@@ -50,7 +50,9 @@ var swiper = new Swiper('.teacher__slider', {
 var swiper2 = new Swiper('.process__slider', {
     slidesPerView: 'auto',
     spaceBetween: 8,
+    slidesPerGroup: 1,
     draggable: true,
+
     on: {
         init: function () {
             var titles = [];
@@ -83,15 +85,12 @@ var swiper2 = new Swiper('.process__slider', {
             var title = "<span class='process__newcap'></span>";
         return '<span class="' + currentClass + '"></span>' + ' <span class="process__divider">/</span> ' + '<span class="' + totalClass + '"></span>' + title; }
     },
-    navigation: {
-        nextEl: '.process__controls-next',
-        prevEl: '.process__controls-prev',
-    },
 
     breakpoints: {
         320: {
             slidesPerView: 'auto',
             spaceBetween: 8,
+            slidesPerGroup: 1,
             draggable: true,
             on: {
                 init: function () {
@@ -124,16 +123,15 @@ var swiper2 = new Swiper('.process__slider', {
                 renderFraction: function (currentClass, totalClass) {
                     var title = "<span class='process__newcap'></span>";
                 return '<span class="' + currentClass + '"></span>' + ' <span class="process__divider">/</span> ' + '<span class="' + totalClass + '"></span>' + title; }
-            },
-            navigation: {
-                enabled: false,
             },
         },
 
         768: {
             slidesPerView: 1,
+            slidesPerGroup: 1,
             spaceBetween: 0,
             draggable: true,
+            grabCursor: true,
             on: {
                 init: function () {
                     var titles = [];
@@ -167,7 +165,8 @@ var swiper2 = new Swiper('.process__slider', {
                 return '<span class="' + currentClass + '"></span>' + ' <span class="process__divider">/</span> ' + '<span class="' + totalClass + '"></span>' + title; }
             },
             navigation: {
-                enabled: true,
+                nextEl: '.process__controls-next',
+                prevEl: '.process__controls-prev',
             },
         }
     }
@@ -176,38 +175,33 @@ var swiper2 = new Swiper('.process__slider', {
 var swiper3 = new Swiper('.review__slider', {
     slidesPerView: 1,
     spaceBetween: 0,
+    slidesPerGroup: 1,
     draggable: true,
     watchSlidesProgress: true,
     pagination: {
         el: ".review__pagination",
     },
 
-    navigation: {
-        nextEl: '.review__controls-next',
-        prevEl: '.review__controls-prev',
-    },
-
     breakpoints: {
         320: {
             slidesPerView: 1,
+            slidesPerGroup: 1,
             spaceBetween: 0,
             draggable: true,
             watchSlidesProgress: true,
-
-            navigation: {
-                enabled: false,
-            },
         },
 
         768: {
             slidesPerView: 1,
+            slidesPerGroup: 1,
             spaceBetween: 0,
             draggable: true,
             grabCursor: true,
             watchSlidesProgress: true,
 
             navigation: {
-                enabled: true,
+                nextEl: '.review__controls-next',
+                prevEl: '.review__controls-prev',
             },
         }
     }
