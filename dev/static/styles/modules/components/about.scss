@@ -1,42 +1,7 @@
 .about {
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    padding: 0 4.4444%;
-    margin-bottom: toRem(64);
-
-    // &__head {
-    //     @include flex-setting(column, flex-start, flex-start);
-    //     width: 100%;
-    //     margin-bottom: toRem(64);
-
-    //     &-description {
-    //         @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black);
-    //         text-align: left;
-    //         margin-bottom: toRem(20);
-    //     }
-
-    //     &-price {
-    //         @include flex-setting(column, flex-start, flex-start);
-    //         width: auto;
-    //     }
-
-    //     &-title {
-    //         @include font-setting($secondary-font, toRem(10), toRem(14), 500, $black-opacity);
-    //         letter-spacing: 0.05em;
-    //         text-transform: uppercase;
-    //         margin-bottom: toRem(8);
-    //     }
-
-    //     &-nr {
-    //         @include font-setting($primary-font, toRem(18), toRem(23), 400, $black);
-    //         margin-bottom: toRem(8);
-
-    //         &--old {
-    //             margin-bottom: 0;
-    //             text-decoration: line-through;
-    //         }
-    //     }
-    // }
+    padding: toRem(64) 4.4444% 0 4.4444%;
 
     &__description {
         @include font-setting($primary-font, toRem(18), toRem(23), 400, $black);
@@ -118,8 +83,7 @@
         display: grid;
         grid-template-columns: 42.1652% 44.1595%;
         grid-column-gap: toRem(98);
-        padding: 0 4.1667%;
-        margin-bottom: toRem(80);
+        padding: toRem(80) 4.1667% 0 4.1667%;
 
         &__title {
             grid-column: 1 / 2;
@@ -171,20 +135,7 @@
         grid-template-columns: toRem(156) 1fr;
         grid-column-gap: toRem(190);
         --padding: calc(100% - 1360px);
-        padding: 0 calc(var(--padding) / 2);
-        margin-bottom: toRem(120);
-
-        // &__head {
-        //     flex-direction: row;
-        //     margin-bottom: toRem(30);
-    
-        //     &-description {
-        //         width: 100%;
-        //         max-width: 38.6039%;
-        //         margin-right: toRem(80);
-        //         margin-bottom: 0;
-        //     }
-        // }
+        padding: toRem(120) calc(var(--padding) / 2) 0 calc(var(--padding) / 2);
 
         &__title {
             margin-bottom: toRem(24);

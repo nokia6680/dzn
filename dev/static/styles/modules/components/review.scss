@@ -2,8 +2,7 @@
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
 
-    padding: 0 4.444%;
-    margin-bottom: toRem(64);
+    padding: toRem(64) 4.4444% 0 4.4444%;
 
     &__title {
         font-size: toRem(32);
@@ -139,8 +138,7 @@
 
 @include min-screen(768px) {
     .review {
-        padding: 0 4.1667%;
-        margin-bottom: toRem(80);
+        padding: toRem(80) 4.1667% 0 4.1667%;
     
         &__title {
             font-size: toRem(64);
@@ -286,9 +284,9 @@
         justify-content: space-between;
         align-self: start;
         --padding: calc(100% - 1360px);
+        padding-top: toRem(120);
         padding-left: calc(var(--padding) / 2);
         padding-right: calc(var(--padding) / 2);
-        margin-bottom: toRem(120);
     
         &__title {
             grid-column: 1 / 2;

@@ -2,7 +2,6 @@
     position: relative;
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    margin-bottom: toRem(64);
     overflow: hidden;
 
     &__player {
@@ -143,8 +142,6 @@
 
 @include min-screen(768px) {
     .intro {
-        margin-bottom: toRem(80);
-    
         &__player {
             height: toRem(800);
             margin-bottom: toRem(80);
@@ -227,7 +224,6 @@
         --padding: calc(100% - 1440px);
         padding-left: calc(var(--padding) / 2);
         padding-right: calc(var(--padding) / 2);
-        margin-bottom: toRem(120);
     
         &__player {
             margin-bottom: 0;

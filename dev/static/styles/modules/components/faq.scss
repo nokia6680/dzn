@@ -2,7 +2,7 @@
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
 
-    padding: 0 4.4444%;
+    padding: toRem(64) 4.4444% 0 4.4444%;
     margin-bottom: toRem(64);
 
     &__list {
@@ -55,6 +55,7 @@
         position: relative;
         display: flex;
         width: 100%;
+        outline: none;
         border-bottom: toRem(1) solid rgba(34, 34, 34, 0.1);
         
         &-text {
@@ -97,6 +98,7 @@
     }
 
     &__answer {
+        outline: none;
         width: 100%;
         padding-bottom: toRem(24);
         border-bottom: toRem(1) solid rgba(34, 34, 34, 0.1);
@@ -110,7 +112,7 @@
 
 @include min-screen(768px) {
     .faq {
-        padding: 0 4.1667%;
+        padding: toRem(80) 4.1667% 0 4.1667%;
         margin-bottom: toRem(80);
     
         &__name {
@@ -132,7 +134,7 @@
 @include min-screen(1440px) {
     .faq {
         --padding: calc(100% - 1360px);
-        padding: 0 calc(var(--padding) / 2);
+        padding: toRem(120) calc(var(--padding) / 2) 0 calc(var(--padding) / 2);
         margin-bottom: toRem(120);
         
         &__title {

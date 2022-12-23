@@ -2,7 +2,7 @@
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
     overflow: hidden;
-    margin-bottom: toRem(64);
+    padding-top: toRem(64);
 
     &__title {
         margin-left: 4.4444%;
@@ -52,7 +52,7 @@
 
 @include min-screen(768px) {
     .teacher {
-        margin-bottom: toRem(80);
+        padding-top: toRem(80);
         padding-left: 4.1667%;
         padding-right: 4.1667%;
     
@@ -137,9 +137,9 @@
 @include min-screen(1440px) {
     .teacher {
         --padding: calc(100% - 1360px);
-        margin-bottom: toRem(120);
         padding-left: calc(var(--padding) / 2);
         padding-right: calc(var(--padding) / 2);
+        padding-top: toRem(120);
     
         &__title {
             margin-left: 0;

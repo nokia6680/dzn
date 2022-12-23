@@ -1,8 +1,7 @@
  .process {
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    padding: 0 4.4444%;
-    margin-bottom: toRem(64);
+    padding: toRem(64) 4.4444% 0 4.4444%;
     overflow: hidden;
 
     &__list {
@@ -102,6 +101,7 @@
     &__newcap {
         @include font-setting($secondary-font, toRem(14), toRem(19), 400, $black);
         margin-left: toRem(30);
+        display: none;
     }
 
     &__controls {
@@ -112,8 +112,8 @@
 @include min-screen(768px) {
     .process {
         padding: 0;
+        padding-top: toRem(80);
         padding-bottom: toRem(30);
-        margin-bottom: toRem(80);
         overflow: hidden;
 
         &__title {
@@ -227,6 +227,7 @@
 @include min-screen(1440px) {
     .process {
         --padding: calc(100% - 1360px);
+        padding-top: toRem(120);
         padding-left: calc(var(--padding) / 2);
         padding-right: calc(var(--padding)/ 2);
 

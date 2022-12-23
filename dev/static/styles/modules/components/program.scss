@@ -1,8 +1,7 @@
 .program {
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    padding: 0 4.4444%;
-    margin-bottom: toRem(64);
+    padding: toRem(64) 4.4444% 0 4.4444%;
 
     &__title {
         margin-bottom: toRem(10);
@@ -67,6 +66,7 @@
         justify-content: flex-start;
         align-self: flex-start;
         width: 100%;
+        outline: none;
         
         border-bottom: toRem(1) solid rgba(34, 34, 34, 0.1);
 
@@ -138,9 +138,9 @@
 
 @include min-screen(768px) {
     .program {
+        padding-top: toRem(80);
         padding-left: 4.1667%;
         padding-right: 4.1667%;
-        margin-bottom: toRem(56);
     
         &__title {
             margin-bottom: toRem(10);
@@ -196,8 +196,7 @@
 @include min-screen(1440px) {
     .program {
         --padding: calc(100% - 1360px);
-        padding: 0 calc(var(--padding) / 2);
-        margin-bottom: toRem(120);
+        padding: toRem(120) calc(var(--padding) / 2) 0 calc(var(--padding) / 2);
         overflow: hidden;
     
         &__title {

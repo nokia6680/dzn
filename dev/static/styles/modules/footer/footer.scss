@@ -282,6 +282,8 @@
         &-contacts {
             @include flex-setting(row, flex-start, center);
             width: 100%;
+            opacity: 0;
+            pointer-events: none;
         }
 
         &-link {
