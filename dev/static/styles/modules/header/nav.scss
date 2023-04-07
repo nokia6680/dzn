@@ -2,13 +2,14 @@
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
-    padding: toRem(100) toRem(77) toRem(30) toRem(77);
+    padding: toRem(100) toRem(36) toRem(30) toRem(77);
     background-color: $white;
 
     &__call {
         margin-bottom: toRem(30);
         @include font-setting($primary-font, toRem(28), toRem(36), 400, $black);
         text-decoration: none;
+        white-space: nowrap;
         transition: 0.2s $cubic;
 
         &:active {
@@ -64,6 +65,8 @@
         gap: toRem(86);
         width: 100%;
         padding-top: toRem(30);
+
+        display: none;
 
         &-link {
             @include font-setting($secondary-font, toRem(16), toRem(22), 400, $black);

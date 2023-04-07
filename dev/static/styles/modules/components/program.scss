@@ -1,7 +1,7 @@
 .program {
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    padding: toRem(64) 4.4444% 0 4.4444%;
+    padding: toRem(100) 4.4444% 0 4.4444%;
 
     &__title {
         margin-bottom: toRem(10);

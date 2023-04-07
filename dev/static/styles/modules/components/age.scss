@@ -1,0 +1,75 @@
+.age {
+    position: fixed;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    @include flex-setting(column, center, center);
+
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+
+    &__wrapper {
+        @include flex-setting(column, flex-start, center);
+        width: 100%;
+        max-width: toRem(335);
+
+        background-color: $white;
+        box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+        padding: toRem(40) toRem(20);
+    }
+
+    &__img {
+        width: toRem(167);
+        height: toRem(97);
+        margin-bottom: toRem(40);    
+    }
+
+    &__description {
+        @include font-setting($primary-font, toRem(16), toRem(22), 400, $black);
+        text-align: center;
+        margin-bottom: toRem(40);
+    }
+
+    &__submit {
+        width: auto;
+        @include font-setting($secondary-font, toRem(16), toRem(22), 400, $white);
+        background-color: $black;
+        @include flex-setting(column, center, center);
+
+        padding: toRem(14) toRem(59);
+        border: none;
+        border-radius: toRem(56);
+
+        &:active {
+            background-color: $bordo;
+            transition: 0.2s $cubic;
+        }
+    }
+}
+
+@include min-screen(768px) {
+    .age {
+
+        &__wrapper {
+            max-width: toRem(482);
+            padding: toRem(40) toRem(60);
+        }
+    }
+}
+
+@include min-screen(1440px) {
+    .age {
+        &__submit {
+            &:hover {
+                background-color: $bordo;
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+}

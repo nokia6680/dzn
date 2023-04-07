@@ -23,6 +23,18 @@ var sandwichToggle = function sandwichToggle() {
 
 sandwichToggle(); // Menu hiding lib
 
+var links = document.getElementsByClassName('nav__link');
+var elNodes = document.querySelectorAll(".nav__link");
+var header = document.querySelector('.header');
+
+for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    link.addEventListener("click", function() {
+        header.classList.remove('is-active');
+        body.classList.remove('no-scroll');
+    });
+}
+
 var fastOpener = document.getElementsByClassName('js-purchase');
 var elNodes = document.querySelectorAll(".js-purchase");
 var fastPopup = document.querySelector('.popup-order');

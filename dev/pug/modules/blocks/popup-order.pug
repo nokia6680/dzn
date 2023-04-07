@@ -14,6 +14,11 @@
                         span.form__error.form__error--name.hidden
                 li.form__item
                     .form__item-wrap.form-line
+                        label(for="order-surname").form__label.js-label
+                            input(type="text" name="order-surname" id="order-surname" placeholder="Фамилия*" required onkeydown="validationName()").form__input.js-name-input.js-input
+                        span.form__error.form__error--name.hidden
+                li.form__item
+                    .form__item-wrap.form-line
                         label(for="order-tel").form__label.js-label
                             input(type="tel" name="order-tel" id="order-tel" placeholder="Телефон" onkeydown="validationTel()").form__input.js-phone-input.js-input
                         span.form__error.form__error--tel.hidden
@@ -32,6 +37,11 @@
                     .form__item-wrap.form-line
                         label(for="gift-name").form__label.js-label
                             input(type="text" name="gift-name" id="gift-name" placeholder="Имя" onkeydown="validationName()").form__input.js-name-input.js-input
+                        span.form__error.form__error--name.hidden
+                li.form__item
+                    .form__item-wrap.form-line
+                        label(for="gift-surname").form__label.js-label
+                            input(type="text" name="gift-surname" id="gift-surname" placeholder="Фамилия" onkeydown="validationName()").form__input.js-name-input.js-input
                         span.form__error.form__error--name.hidden
                 li.form__item
                     .form__item-wrap.form-line

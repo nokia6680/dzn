@@ -1,7 +1,7 @@
  .process {
     @include flex-setting(column, flex-start, flex-start);
     width: 100%;
-    padding: toRem(64) 4.4444% 0 4.4444%;
+    padding: toRem(100) 4.4444% 0 4.4444%;
     overflow: hidden;
 
     &__list {
@@ -98,12 +98,6 @@
         opacity: 0.4;
     }
 
-    &__newcap {
-        @include font-setting($secondary-font, toRem(14), toRem(19), 400, $black);
-        margin-left: toRem(30);
-        display: none;
-    }
-
     &__controls {
         display: none;
     }
@@ -167,12 +161,6 @@
         .process__divider {
             font-size: toRem(18);
             line-height: toRem(25);
-        }
-    
-        &__newcap {
-            font-size: toRem(18);
-            line-height: toRem(25);
-            margin-left: toRem(16);
         }
 
         &__controls {
@@ -259,10 +247,6 @@
 
         &__pagination {
             padding-left: 0;
-        }
-    
-        &__newcap {
-            margin-left: toRem(31);
         }
 
         &__controls {
