@@ -56,7 +56,23 @@
     &__description {
         @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black-opacity);
         text-align: left;
-        margin-bottom: toRem(32);
+        margin-bottom: toRem(24);
+    }
+
+    &__info {
+        @include flex-setting(column, flex-start, flex-start);
+        width: 100%;
+        margin-bottom: toRem(50);
+    }
+
+    &__name {
+        @include font-setting($primary-font, toRem(16), toRem(21), 400, #000000);
+        text-align: left;
+        margin-bottom: toRem(16);
+    }
+
+    &__price {
+        @include font-setting($primary-font, toRem(16), toRem(21), 400, #000000);
     }
 }
 
@@ -64,6 +80,25 @@
     .popup-order {  
         &__wrapper {
             padding: toRem(32) toRem(46);
+        }
+
+        &__info {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__name {
+            font-size: toRem(18);
+            line-height: toRem(24);
+            max-width: toRem(420);
+            margin-bottom: 0;
+        }
+
+        &__price {
+            width: auto;
+            font-size: toRem(18);
+            line-height: toRem(24);
         }
     
         &__closer {

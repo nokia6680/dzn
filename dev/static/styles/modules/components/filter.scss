@@ -1,0 +1,144 @@
+.filter {
+    position: relative;
+    @include flex-setting(column, flex-start, flex-start);
+    width: 100%;
+
+    &__head {
+        position: relative;
+        @include font-setting($secondary-font, toRem(14), toRem(20), 400, $black);
+        padding: 0 toRem(20) toRem(16) 0;
+        width: auto;
+        background-color: transparent;
+        cursor: pointer;
+
+        &::after {
+            position: absolute;
+            content: '';
+
+            width: toRem(12);
+            height: toRem(12);
+
+            right: 0;
+            top: toRem(4);
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9.5L0.803849 0.499999L11.1962 0.5L6 9.5Z' fill='%23F3F1F1'/%3E%3C/svg%3E%0A");
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: toRem(12) toRem(10);
+            transition: 0.2s $cubic;
+        }
+
+        &.is-active {
+            &::after {
+                transform: rotate(180deg);
+                transition: 0.2s $cubic;
+            }
+        }
+    }
+
+    &__list {
+        position: absolute;
+        z-index: 99;
+        left: 0;
+        top: toRem(36);
+        @include flex-setting(column, flex-start, flex-start);
+        gap: toRem(12);
+        width: auto;
+        min-width: toRem(192);
+        padding: toRem(20) toRem(20);
+        background-color: $white;
+        display: none;
+        box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.08);
+
+        &.is-active {
+            display: flex;
+        }
+    }
+
+    &__item {
+        width: 100%;
+        @include font-setting($secondary-font, toRem(12), toRem(17), 400, $black);
+            
+        &.is-active {
+            color: $bordo;
+        }
+    }
+}
+
+@include min-screen(768px) {
+    .filter {
+        &__head {
+            font-size: toRem(16);
+            line-height: toRem(20);
+            padding: 0 toRem(20) toRem(16) 0;
+            width: auto;
+            background-color: transparent;
+            cursor: pointer;
+    
+            &::after {
+                position: absolute;
+                content: '';
+    
+                width: toRem(12);
+                height: toRem(12);
+    
+                right: 0;
+                top: toRem(4);
+                background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9.5L0.803849 0.499999L11.1962 0.5L6 9.5Z' fill='%23F3F1F1'/%3E%3C/svg%3E%0A");
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: toRem(12) toRem(10);
+                transition: 0.2s $cubic;
+            }
+    
+            &.is-active {
+                &::after {
+                    transform: rotate(180deg);
+                    transition: 0.2s $cubic;
+                }
+            }
+        }
+    
+        &__list {
+            position: absolute;
+            z-index: 99;
+            left: 0;
+            top: toRem(36);
+            @include flex-setting(column, flex-start, flex-start);
+            gap: toRem(12);
+            width: auto;
+            min-width: toRem(192);
+            padding: toRem(20) toRem(20);
+            background-color: $white;
+            display: none;
+            box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.08);
+    
+            &.is-active {
+                display: flex;
+            }
+        }
+    
+        &__item {
+            width: 100%;
+            @include font-setting($secondary-font, toRem(12), toRem(17), 400, $black);
+                
+            &.is-active {
+                color: $bordo;
+            }
+
+            &:active {
+                color: $bordo;
+            }
+        }
+    }   
+}
+
+@include min-screen(1440px) {
+    .filter {
+        &__item {
+            cursor: pointer;
+            &:hover {
+                color: $bordo;
+            }
+        }
+    }
+}

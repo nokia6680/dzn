@@ -5,6 +5,10 @@
         h3.popup-order__title Оплатить курс
         p.popup-order__description После оплаты курса, мы пришлем доступы в личный кабинет на вашу почту
 
+        .popup-order__info
+            b.popup-order__name №1 Программа профессионального обучения по специальности сомелье/кавист  
+            span.popup-order__price 220 000 рублей
+
         form(name="order-form" method="" action="").popup-order__form.form
             ul.form__list
                 li.form__item
@@ -12,11 +16,11 @@
                         label(for="order-name").form__label.js-label
                             input(type="text" name="order-name" id="order-name" placeholder="Имя*" required onkeydown="validationName()").form__input.js-name-input.js-input
                         span.form__error.form__error--name.hidden
-                li.form__item
-                    .form__item-wrap.form-line
-                        label(for="order-surname").form__label.js-label
-                            input(type="text" name="order-surname" id="order-surname" placeholder="Фамилия*" required onkeydown="validationName()").form__input.js-name-input.js-input
-                        span.form__error.form__error--name.hidden
+                //- li.form__item
+                //-     .form__item-wrap.form-line
+                //-         label(for="order-surname").form__label.js-label
+                //-             input(type="text" name="order-surname" id="order-surname" placeholder="Фамилия*" required onkeydown="validationName()").form__input.js-name-input.js-input
+                //-         span.form__error.form__error--name.hidden
                 li.form__item
                     .form__item-wrap.form-line
                         label(for="order-tel").form__label.js-label
@@ -27,6 +31,15 @@
                         label(for="order-mail").form__label.js-label
                             input(type="email" name="order-mail" id="order-mail" placeholder="E-mail*" required onkeydown="validationMail()").form__input.js-mail-input.js-input
                         span.form__error.form__error--mail.hidden
+                li.form__item.form__item--select
+                    .form__item-wrap
+                        .form__item-filter.filter
+                            b(data-type="").filter__head Выбор размера оплаты
+                            ul.filter__list
+                                li(data-type="full").filter__item.is-active Полная оплата
+                                li(data-type="70k").filter__item 70 000 рублей
+                                li(data-type="80k").filter__item 80 000 рублей
+                                li(data-type="90k").filter__item 90 000 рублей
             .form__item
                 .form__item-wrap.form-line.form__item-wrap--checkbox
                     input(type="checkbox" name="order-gift" id="order-gift" value="order-gift").form__checkbox
@@ -38,11 +51,11 @@
                         label(for="gift-name").form__label.js-label
                             input(type="text" name="gift-name" id="gift-name" placeholder="Имя" onkeydown="validationName()").form__input.js-name-input.js-input
                         span.form__error.form__error--name.hidden
-                li.form__item
-                    .form__item-wrap.form-line
-                        label(for="gift-surname").form__label.js-label
-                            input(type="text" name="gift-surname" id="gift-surname" placeholder="Фамилия" onkeydown="validationName()").form__input.js-name-input.js-input
-                        span.form__error.form__error--name.hidden
+                //- li.form__item
+                //-     .form__item-wrap.form-line
+                //-         label(for="gift-surname").form__label.js-label
+                //-             input(type="text" name="gift-surname" id="gift-surname" placeholder="Фамилия" onkeydown="validationName()").form__input.js-name-input.js-input
+                //-         span.form__error.form__error--name.hidden
                 li.form__item
                     .form__item-wrap.form-line
                         label(for="gift-tel").form__label.js-label

@@ -62,3 +62,40 @@ for (const i of giftRadio) {
         giftList.classList.toggle('active');
     }
 }
+
+var filterHead = document.querySelector(".filter__head");
+var filterList = document.querySelector(".filter__list");
+var filterItems = document.querySelectorAll(".filter__item");
+
+// Add event listener to filter__head
+filterHead.addEventListener("click", () => {
+    // Toggle class "is-active" on filter__list
+    filterList.classList.toggle("is-active");
+});
+
+// Add event listener to each filter__item
+filterItems.forEach((item) => {
+    item.addEventListener("click", () => {
+        // Get item textContent and data-type attribute
+        var itemText = item.textContent;
+        var itemType = item.getAttribute("data-type");
+        console.log(itemType);
+        // Set filter__head textContent and data-type attribute
+        filterHead.textContent = itemText;
+        filterHead.setAttribute("data-type", itemType);
+
+        // Remove class "is-active" from filter__list
+        filterList.classList.remove("is-active");
+    });
+});
+
+// Add event listener to document
+document.addEventListener("click", (event) => {
+    // Check if clicked element is inside filter__list or filter__head
+    const isClickInsideList = filterList.contains(event.target);
+    const isClickInsideHead = filterHead.contains(event.target);
+    if (!isClickInsideList && !isClickInsideHead) {
+        // Remove class "is-active" from filter__list
+        filterList.classList.remove("is-active");
+    }
+});
